@@ -28,7 +28,7 @@ const page = ({ data }: { data: Data[] }) => {
   return (
     <div className="py-8 flex flex-col lg:flex-row gap-4">
       <div className="lg:w-1/3">
-        <aside className="flex flex-col items-start lg:gap-y-4">
+        <aside className="flex flex-col items-start">
           {data.map((category) => {
             const isOpen = openCategory === category.category;
 
@@ -50,7 +50,7 @@ const page = ({ data }: { data: Data[] }) => {
                   </span>
                 </button>
                 {isOpen && (
-                  <ul className="lg:space-y-2 text-foreground/60 font-display italic">
+                  <ul className="lg:space-y-2 text-foreground/60 font-display italic mb-2">
                     {category.items.map((item) => {
                       const isActive =
                         activeItem.title === item.title &&
@@ -83,7 +83,7 @@ const page = ({ data }: { data: Data[] }) => {
         <h1 className="text-2xl lg:text-4xl font-display font-bold mb-4 lg:mb-6">
           {activeItem.title}
         </h1>
-        <p className="whitespace-pre-line leading-relaxed lg:text-xl font-display text-foreground">
+        <p className="whitespace-pre-line lg:text-lg font-display text-foreground leading-relaxed">
           {activeItem.description}
         </p>
       </div>

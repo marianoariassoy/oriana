@@ -72,8 +72,8 @@ const home = ({ section }: { section: string }) => {
         <h1 className="font-display text-5xl lg:text-8xl w-full italic border-b text-right border-[var(--hover-color)] lg:leading-20 pr-4">
           {data.name}
         </h1>
-        <div className="lg:h-50">
-          <p className="text-foreground whitespace-break-spaces text-justify text-lg leading-7">
+        <div className="lg:h-40 overflow-y-auto">
+          <p className="text-foreground whitespace-break-spaces text-justify text-lg leading-tight">
             {data.description}
           </p>
         </div>
