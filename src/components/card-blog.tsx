@@ -6,11 +6,15 @@ interface Card {
   description: string;
   image?: string;
   video?: string;
+  index: number;
 }
 
-const CardBlog = ({ title, date, description, image, video }: Card) => {
+const CardBlog = ({ title, date, description, image, video, index }: Card) => {
   return (
-    <article className="flex flex-col gap-y-4 font-display pb-12 border-b border-1">
+    <article
+      className="flex flex-col gap-y-4 font-display pb-12 border-b border-1"
+      id={`video-${index + 1}`}
+    >
       <header>
         <h3 className="font-bold text-foreground lg:text-xl">{date}</h3>
         <h2 className="font-bold text-xl lg:text-4xl">{title}</h2>

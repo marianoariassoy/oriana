@@ -1,7 +1,12 @@
+"use client";
+import { useState } from "react";
 import Layout from "@/components/sectionlayout";
 import CardVideo from "@/components/card-video";
+import Bullets from "@/components/bullets";
 
 const page = () => {
+  const [image, setImage] = useState(1);
+
   const data = [
     {
       title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
@@ -29,11 +34,25 @@ const page = () => {
     },
   ];
 
+  const goTo = (id: number) => {
+    setImage(id);
+    const image = document.querySelector(`#image-${id}`);
+    if (!image) return;
+    image.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Layout section="audiovisual" subsection="Videos">
+      <Bullets data={data} goTo={goTo} image={image} />
+
       <div className="flex flex-col py-16 gap-y-12 w-full mx-auto max-w-3xl fade-in">
         {data.map((item, index) => (
-          <CardVideo key={index} title={item.title} video={item.video} />
+          <CardVideo
+            key={index}
+            title={item.title}
+            video={item.video}
+            index={index}
+          />
         ))}
       </div>
     </Layout>

@@ -3,11 +3,12 @@ import ReactPlayer from "react-player";
 interface Card {
   title: string;
   video: string;
+  index: number;
 }
 
-const CardVideo = ({ title, video }: Card) => {
+const CardVideo = ({ title, video, index }: Card) => {
   return (
-    <article className="flex flex-col gap-y-4">
+    <article className="flex flex-col gap-y-4" id={`image-${index + 1}`}>
       <div className="aspect-video overflow-hidden">
         <ReactPlayer
           src={video}

@@ -1,7 +1,12 @@
+"use client";
+import { useState } from "react";
 import Layout from "@/components/sectionlayout";
 import CardBlog from "@/components/card-blog";
+import Bullets from "@/components/bullets";
 
 const page = () => {
+  const [image, setImage] = useState(1);
+
   const data = [
     {
       title: "Está llegando la primavera...",
@@ -21,8 +26,18 @@ const page = () => {
       video: "https://www.youtube.com/watch?v=UA0V0vN2-Kg",
     },
   ];
+
+  const goTo = (id: number) => {
+    setImage(id);
+    const image = document.querySelector(`#video-${id}`);
+    if (!image) return;
+    image.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Layout section="oriana" subsection="Mi Mundo">
+      <Bullets data={data} goTo={goTo} image={image} />
+
       <div className="py-16 w-full mx-auto max-w-3xl fade-in">
         <h2 className="font-display text-xl lg:text-3xl mb-20">
           Algunas reflexiones. Ideas lanzadas al mundo. <br /> Formas de ver...
@@ -36,6 +51,7 @@ const page = () => {
               description={item.description}
               image={item.image}
               video={item.video}
+              index={index}
             />
           ))}
         </div>
