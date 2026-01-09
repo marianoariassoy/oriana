@@ -10,7 +10,9 @@
   "dependencies": {
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-player": "^3.4.0",
+    "react-slideshow-image": "^4.3.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

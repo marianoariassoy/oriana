@@ -1,0 +1,106 @@
+"use client";
+import { useState, useEffect } from "react";
+import { nav } from "@/lib/data";
+import Link from "next/link";
+
+interface Submenu {
+  name: string;
+  name_en: string;
+  href: string;
+}
+
+interface Section {
+  name: string;
+  name_en: string;
+  href: string;
+  color: string;
+  description: string;
+  description_en: string;
+  submenu: Submenu[];
+}
+
+const home = ({ section }: { section: string }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const [data, setData] = useState({
+    name: "",
+    name_en: "",
+    href: "",
+    color: "",
+    description: "",
+    description_en: "",
+    submenu: [
+      {
+        name: "",
+        name_en: "",
+        href: "",
+      },
+    ],
+  });
+
+  useEffect(() => {
+    if (section) {
+      const result = nav.find(
+        (item) => item.name.toLowerCase() === section.toLowerCase()
+      ) as Section;
+
+      setData(result);
+    }
+  }, [section]);
+
+  return (
+    <section
+      style={
+        {
+          "--hover-color": data.color,
+        } as React.CSSProperties
+      }
+      className={`min-h-screen p-4 flex lg:items-center justify-center text-[var(--hover-color)] bg-secondary ${
+        mounted ? "opacity-100 visible" : "opacity-0 invisible"
+      }`}
+    >
+      <div
+        className={`w-full max-w-2xl flex flex-col gap-y-8 mt-30 lg:mt-0 
+          transition-all duration-300 ease-in-out ${
+            mounted ? "lg:translate-x-0" : "lg:translate-x-full"
+          }`}
+      >
+        <h1 className="font-display text-5xl lg:text-8xl w-full italic border-b text-right border-[var(--hover-color)] lg:leading-20 pr-4">
+          {data.name}
+        </h1>
+        <div className="lg:h-50">
+          <p className="text-foreground whitespace-break-spaces text-justify text-lg leading-7">
+            {data.description}
+          </p>
+        </div>
+        <div className="flex flex-col gap-2 lg:flex-row items-center justify-between">
+          {data.submenu.map((item, index) => (
+            <Link
+              href={item.href}
+              key={index}
+              className="border border-[var(--hover-color)] h-12 w-full  lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium"
+            >
+              <span>{item.name}</span>
+            </Link>
+          ))}
+        </div>
+        {section === "contacto" && (
+          <div className="flex justify-center">
+            <a
+              href="mailto:#"
+              className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium"
+            >
+              Envíame tu consulta
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default home;
