@@ -9,7 +9,7 @@ interface Card {
 const Card1 = (props: Card) => {
   return (
     <article className="flex flex-col gap-y-2">
-      <Link href={"/audiovisual/fotografias"}>
+      <Link href={"/audiovisual/fotografias/test"}>
         <div className="aspect-5/7">
           <img
             src={props.image}

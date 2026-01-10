@@ -43,7 +43,7 @@ const page = ({ data }: { data: Data[] }) => {
                   <span>{category.title}</span>
                   <span
                     className={`text-xs ${
-                      isOpen ? "translate-y-[0.15rem]" : "scale-y-[-1] "
+                      isOpen ? "translate-y-[0.15rem]" : "scale-y-[-1]"
                     }`}
                   >
                     <GoUp />

@@ -1,5 +1,5 @@
 import Layout from "@/components/sectionlayout";
-import Card from "@/components/card-1";
+import Card from "@/components/card-audiovisual";
 
 const page = () => {
   const data = [

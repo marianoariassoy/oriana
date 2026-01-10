@@ -1,4 +1,4 @@
-import { Facebook, Instagram, TikTok } from "./icons";
+import { Facebook, Instagram } from "./icons";
 
 export const nav = [
   {
@@ -120,20 +120,12 @@ venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.`,
 export const social = [
   {
     name: "Facebook",
-    href: "https://www.facebook.com/AlfajoresGuaymallen/",
+    href: "https://www.facebook.com/",
     icon: Facebook,
-    color: "rgb(106, 174, 231)",
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/a_guaymallen/",
+    href: "https://www.instagram.com/",
     icon: Instagram,
-    color: "rgb(252, 165, 148)",
-  },
-  {
-    name: "TikTok",
-    href: "https://www.tiktok.com/discover/alfajores-guaymallen",
-    icon: TikTok,
-    color: "rgb(147, 216, 230)",
   },
 ];

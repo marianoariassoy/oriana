@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { nav } from "@/lib/data";
+import { Asterisco } from "@/lib/icons";
 import GoUp from "@/components/goup";
 
 interface Submenu {
@@ -66,16 +67,19 @@ const sectionLayout = ({
           "--color": data.color,
         } as React.CSSProperties
       }
-      className="text-[var(--color)] px-4 lg:px-8 max-w-[1480px] mx-auto"
+      className="text-[var(--color)] px-4 lg:px-8 max-w-[1480px] mx-auto pb-8"
     >
-      <header className="sticky top-0 w-full h-30 border-b border-[var(--color)] pt-4 bg-secondary/70 backdrop-blur-lg pt-12 z-40">
+      <header className="sticky top-0 w-full h-30 border-b border-[var(--color)] bg-secondary/70 backdrop-blur-lg pt-12 z-40">
         <div
-          className={`text-xl lg:text-4xl font-display flex gap-x-2 text-gray-600 transition-all duration-300 ease-in-out  ${
+          className={`text-xl lg:text-4xl font-display flex items-center gap-x-2 text-foreground/60 transition-all duration-300 ease-in-out  ${
             mounted ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <Link href="/" className="hover:text-[var(--color)]">
-            Oriana
+          <Link
+            href="/"
+            className="hover:text-[var(--color)] translate-[0.2rem]"
+          >
+            <Asterisco />
           </Link>
           /
           <Link className="hover:text-[var(--color)]" href={`${data.href}`}>

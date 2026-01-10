@@ -35,7 +35,7 @@ const CardBlog = ({ title, date, description, image, video, index }: Card) => {
           />
         </div>
       )}
-      <p className="text-foreground italic leading-5 lg:text-lg lg:leading-6">
+      <p className="text-foreground italic leading-snug lg:text-lg">
         {description}
       </p>
     </article>
