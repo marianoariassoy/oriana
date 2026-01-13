@@ -63,6 +63,9 @@ const home = ({ section }: { section: string }) => {
         mounted ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
+      <div className="absolute left-4 top-9 font-display text-3xl text-foreground lg:hidden">
+        Oriana Favaro
+      </div>
       <div
         className={`w-full max-w-2xl flex flex-col gap-y-8 mt-30 lg:mt-0 
           transition-all duration-300 ease-in-out ${
@@ -89,16 +92,31 @@ const home = ({ section }: { section: string }) => {
           ))}
         </div>
         {section === "contacto" && (
-          <div className="flex justify-center">
+          <>
+            <div className="flex justify-center">
+              <a
+                href="mailto:#"
+                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium"
+              >
+                Envíame tu consulta
+              </a>
+            </div>
             <a
-              href="mailto:#"
-              className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium"
+              href="https://fabianmuggeri.com"
+              className="lg:hidden text-foreground hover:underline"
             >
-              Envíame tu consulta
+              Diseño y fabianmuggeri.com
             </a>
-          </div>
+          </>
         )}
       </div>
+      {section === "contacto" && (
+        <div className="fixed right-0 translate-x-12 top-1/2 -translate-y-1/2  text-sm text-foreground rotate-90 hidden lg:block">
+          <a href="https://fabianmuggeri.com" className="hover:underline">
+            Diseño y fabianmuggeri.com
+          </a>
+        </div>
+      )}
     </section>
   );
 };

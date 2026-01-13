@@ -56,7 +56,7 @@ const page = () => {
 
   return (
     <Layout section="audiovisual" subsection="Fotografías">
-      <div className="lg:px-12 py-16 grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-12 fade-in">
+      <div className="lg:px-12 py-16 grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-y-12 fade-in">
         {data.map((item, index) => (
           <Card
             key={index}

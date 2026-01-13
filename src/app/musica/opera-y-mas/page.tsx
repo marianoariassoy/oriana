@@ -2,9 +2,11 @@
 import { useState } from "react";
 import Layout from "@/components/sectionlayout";
 import CardMusica from "@/components/card-musica";
+import Modal from "@/components/modal";
 
 const page = () => {
   const [category, setCategory] = useState(1);
+  const [dataModal, setDataModal] = useState(null);
 
   const data = [
     {
@@ -64,33 +66,44 @@ const page = () => {
   ];
 
   return (
-    <Layout section="música" subsection="Ópera y más">
-      <div className="flex flex-col gap-y-8">
-        <header className="flex items-center gap-x-2">
-          {categorys.map((item, index) => (
-            <button
-              key={index}
-              className={`border border-t-0 h-12 w-full lg:w-50 flex items-center justify-center cursor-pointer hover:text-white font-medium  
+    <>
+      <Layout section="música" subsection="Ópera y más">
+        <div className="flex flex-col gap-y-8">
+          <header className="flex items-center gap-x-2 flex-wrap">
+            {categorys.map((item, index) => (
+              <button
+                key={index}
+                className={`border border-t-0 h-12 w-full lg:w-50 flex items-center justify-center cursor-pointer hover:text-white font-medium  
                 ${
                   category === item.id
                     ? "bg-2 border-2 text-white"
                     : "hover:bg-2 hover:border-2"
                 }`}
-              onClick={() => setCategory(item.id)}
-            >
-              {item.name}
-            </button>
-          ))}
-        </header>
-        <div className="grid grid-cols-3 gap-x-4 gap-y-12">
-          {data
-            .filter((item) => item.category === category)
-            .map((item, index) => (
-              <CardMusica key={index} title={item.title} image={item.image} />
+                onClick={() => setCategory(item.id)}
+              >
+                {item.name}
+              </button>
             ))}
+          </header>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
+            {data
+              .filter((item) => item.category === category)
+              .map((item, index) => (
+                <CardMusica
+                  key={index}
+                  title={item.title}
+                  image={item.image}
+                  setDataModal={setDataModal}
+                />
+              ))}
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+
+      {dataModal ? (
+        <Modal dataModal={dataModal} setDataModal={setDataModal} />
+      ) : null}
+    </>
   );
 };
 

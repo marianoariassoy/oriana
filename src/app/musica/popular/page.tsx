@@ -2,9 +2,10 @@
 import { useState } from "react";
 import Layout from "@/components/sectionlayout";
 import CardMusica from "@/components/card-musica";
+import Modal from "@/components/modal";
 
 const page = () => {
-  const [category, setCategory] = useState(1);
+  const [dataModal, setDataModal] = useState(null);
 
   const data = [
     {
@@ -46,13 +47,24 @@ const page = () => {
   ];
 
   return (
-    <Layout section="música" subsection="Popular">
-      <div className="grid grid-cols-3 gap-x-4 gap-y-12 py-16">
-        {data.map((item, index) => (
-          <CardMusica key={index} title={item.title} image={item.image} />
-        ))}
-      </div>
-    </Layout>
+    <>
+      <Layout section="música" subsection="Popular">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12 py-16">
+          {data.map((item, index) => (
+            <CardMusica
+              key={index}
+              title={item.title}
+              image={item.image}
+              setDataModal={setDataModal}
+            />
+          ))}
+        </div>
+      </Layout>
+
+      {dataModal ? (
+        <Modal dataModal={dataModal} setDataModal={setDataModal} />
+      ) : null}
+    </>
   );
 };
 

@@ -24,7 +24,6 @@ export const metadata: Metadata = {
   title: "Oriana Favaro Artista",
   description:
     "Nací en la provincia de Buenos Aires en el seno de una familia de inmigrantes italianos y españoles. No había artistas en ella, pero sí aficionados y admiración por el arte.",
-  themeColor: "#000000",
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Oriana Favaro Artista",
     images: [
       {
-        url: "/assets/og-image.jpg",
+        url: "https://oriana.dev/assets/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Oriana Favaro Artista",

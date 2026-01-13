@@ -39,6 +39,10 @@ body {
   animation: fade-in 0.3s ease-in-out;
 }
 
+.fade-in-fast {
+  animation: fade-in 0.2s ease-in-out;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

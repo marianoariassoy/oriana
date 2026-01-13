@@ -31,7 +31,7 @@ const menu = ({
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <ul className="flex flex-col text-white text-5xl lg:text-8xl lg:max-w-2xl w-full">
+        <ul className="flex flex-col text-white text-5xl lg:text-8xl lg:w-full lg:max-w-2xl">
           {nav.map((item, index) => (
             <li
               key={index}

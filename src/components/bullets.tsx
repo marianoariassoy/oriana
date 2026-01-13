@@ -8,7 +8,7 @@ const bullets = ({
   image: number;
 }) => {
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 gap-y-2 flex flex-col z-10 ">
+    <div className="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 gap-y-2 flex flex-col z-10 ">
       {data.map((item: any, index: number) => {
         return (
           <button
