@@ -40,7 +40,11 @@ const page = () => {
 
   return (
     <Layout section="escritos" subsection="Poesía">
-      {loading ? <Loader /> : <Escritos data={data} />}
+      {loading ? (
+        <Loader />
+      ) : data[0].items.length > 0 ? (
+        <Escritos data={data} />
+      ) : null}
     </Layout>
   );
 };
