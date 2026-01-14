@@ -6,14 +6,6 @@ export const nav = [
     name_en: "Oriana",
     href: "/oriana",
     color: "rgb(183, 34, 112)",
-    description: `Nací en la provincia de Buenos Aires en el seno de una familia de inmigrantes italianos y españoles. No había artistas en ella, pero sí aficionados y admiración por el arte.
-
-Mi primer interés artístico declarado fue a corta edad cuando quise aprender a tocar el piano. Había escuchado “Para Elisa” y sentí la necesidad de poder tocar esa música. De producir esa música yo misma.`,
-    description_en: `I was born in the province of Buenos Aires in the seno of a family of immigrants from Italy and Spain. I didn't have any artists in me, but I had admiration and love for the art.
-
-My first artistic interest was declared when I was a child, I wanted to learn
-to play the piano. I had heard “Para Elisa” and felt the need to be able to
-play that music. I wanted to produce that music.`,
     submenu: [
       {
         name: "Cronología",
@@ -37,8 +29,6 @@ play that music. I wanted to produce that music.`,
     name_en: "Music",
     href: "/musica",
     color: "rgb(82, 79, 161)",
-    description: `No sería quien soy sin la música en mi vida...`,
-    description_en: `I wouldn't be who I am without music in my life...`,
     submenu: [
       {
         name: "Ópera y más",
@@ -57,8 +47,7 @@ play that music. I wanted to produce that music.`,
     name_en: "Audiovisual",
     href: "/audiovisual",
     color: "rgb(239, 65, 54)",
-    description: `Los productos de mis constantes inquietudes expresiva...`,
-    description_en: `The products of my constant expressive needs...`,
+
     submenu: [
       {
         name: "Videos",
@@ -77,12 +66,7 @@ play that music. I wanted to produce that music.`,
     name_en: "",
     href: "/escritos",
     color: "rgb(0, 167, 157)",
-    description: `Del sonido al gesto, de lo dicho a lo escrito.
-Hijos dispersos, mis palabras elegidas.
-Aliento, fuego eterno, herida que sangra vida.`,
-    description_en: `From sound to gesture, from what is said to what is written.
-Distant children, my words chosen.
-Alive, eternal fire, pain that kills life.`,
+
     submenu: [
       {
         name: "Poesía",
@@ -106,13 +90,6 @@ Alive, eternal fire, pain that kills life.`,
     name_en: "Contact",
     href: "/contacto",
     color: "rgb(255, 255, 255)",
-    description: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.`,
-    description_en: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.`,
     submenu: [],
   },
 ];

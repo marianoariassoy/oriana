@@ -1,64 +1,57 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/sectionlayout";
 import CardMusica from "@/components/card-musica";
 import Modal from "@/components/modal";
+import Loader from "@/components/loading";
+
+interface data {
+  id: number;
+  title: string;
+  category: number;
+  image: string;
+}
 
 const page = () => {
+  const lan = "es";
   const [dataModal, setDataModal] = useState(null);
+  const [data, setData] = useState<data[]>([]);
+  const [loading, setLoading] = useState(true);
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/popular/" + lan;
 
-  const data = [
-    {
-      title: "Altri Canti, 2021",
-      category: 1,
-      image:
-        "https://images.pexels.com/photos/15884712/pexels-photo-15884712.jpeg",
-    },
-    {
-      title: "Title 2",
-      category: 1,
-      image:
-        "https://images.pexels.com/photos/35467806/pexels-photo-35467806.jpeg",
-    },
-    {
-      title: "Title 3",
-      category: 1,
-      image:
-        "https://images.pexels.com/photos/10353326/pexels-photo-10353326.jpeg",
-    },
-    {
-      title: "Title 4",
-      category: 2,
-      image:
-        "https://images.pexels.com/photos/35383164/pexels-photo-35383164.jpeg",
-    },
-    {
-      title: "Title 5",
-      category: 2,
-      image:
-        "https://images.pexels.com/photos/28575775/pexels-photo-28575775.jpeg",
-    },
-    {
-      title: "Title 6",
-      category: 3,
-      image:
-        "https://images.pexels.com/photos/35264894/pexels-photo-35264894.jpeg",
-    },
-  ];
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await fetch(apiURL);
+        if (!res.ok) throw new Error("Error al obtener datos de productos");
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getData();
+  }, []);
 
   return (
     <>
       <Layout section="música" subsection="Popular">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12 py-16">
-          {data.map((item, index) => (
-            <CardMusica
-              key={index}
-              title={item.title}
-              image={item.image}
-              setDataModal={setDataModal}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12 py-16">
+            {data.map((item, index) => (
+              <CardMusica
+                key={index}
+                title={item.title}
+                image={item.image}
+                setDataModal={setDataModal}
+              />
+            ))}
+          </div>
+        )}
       </Layout>
 
       {dataModal ? (

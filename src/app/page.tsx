@@ -2,25 +2,39 @@
 import { useState, useEffect } from "react";
 import { Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+import Loader from "@/components/loading";
+
+interface data {
+  id: number;
+  image: string;
+}
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [data, setData] = useState<data[]>([]);
+  const [loading, setLoading] = useState(true);
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/home";
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        console.log(apiURL);
+        const res = await fetch(apiURL);
+        if (!res.ok) throw new Error("Error al obtener datos de productos");
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getData();
+  }, []);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const slideImages = [
-    {
-      url: "/images/home1.jpg",
-    },
-    {
-      url: "/images/home2.jpg",
-    },
-    {
-      url: "/images/home3.jpg",
-    },
-  ];
 
   return (
     <section className="h-screen w-screen relative bg-black">
@@ -42,23 +56,29 @@ export default function Home() {
           mounted ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <Fade
-          autoplay={true}
-          duration={4000}
-          infinite={true}
-          pauseOnHover={false}
-          arrows={false}
-        >
-          {slideImages.map((slideImage, index) => (
-            <div
-              key={index}
-              className="h-screen w-screen bg-center bg-cover"
-              style={{
-                backgroundImage: `url(${slideImage.url})`,
-              }}
-            ></div>
-          ))}
-        </Fade>
+        {loading ? (
+          <div>
+            <Loader />
+          </div>
+        ) : (
+          <Fade
+            autoplay={true}
+            duration={4000}
+            infinite={true}
+            pauseOnHover={false}
+            arrows={false}
+          >
+            {data.map((item, index) => (
+              <div
+                key={index}
+                className="h-screen w-screen bg-center bg-cover"
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                }}
+              ></div>
+            ))}
+          </Fade>
+        )}
       </div>
     </section>
   );

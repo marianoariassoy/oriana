@@ -2,6 +2,13 @@
 import { useState, useEffect } from "react";
 import { nav } from "@/lib/data";
 import Link from "next/link";
+import Loader from "@/components/loading";
+
+interface data {
+  id: number;
+  section: string;
+  text: string;
+}
 
 interface Submenu {
   name: string;
@@ -14,25 +21,19 @@ interface Section {
   name_en: string;
   href: string;
   color: string;
-  description: string;
-  description_en: string;
   submenu: Submenu[];
 }
 
 const home = ({ section }: { section: string }) => {
+  const lan = "es";
   const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  const [description, setDescription] = useState<data[]>([]);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState({
     name: "",
     name_en: "",
     href: "",
     color: "",
-    description: "",
-    description_en: "",
     submenu: [
       {
         name: "",
@@ -41,6 +42,31 @@ const home = ({ section }: { section: string }) => {
       },
     ],
   });
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lan;
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await fetch(apiURL);
+        if (!res.ok) throw new Error("Error al obtener datos de productos");
+        const data = await res.json();
+
+        const result = data.filter(
+          (item: data) => item.section.toLowerCase() === section.toLowerCase()
+        );
+        setDescription(result);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getData();
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (section) {
@@ -76,9 +102,13 @@ const home = ({ section }: { section: string }) => {
           {data.name}
         </h1>
         <div className="lg:h-40 overflow-y-auto">
-          <p className="text-foreground whitespace-break-spaces text-justify text-lg leading-tight">
-            {data.description}
-          </p>
+          {loading ? (
+            <Loader />
+          ) : (
+            <p className="text-foreground whitespace-break-spaces text-justify text-lg leading-tight">
+              {description[0].text}
+            </p>
+          )}
         </div>
         <div className="flex flex-col gap-2 lg:flex-row items-center justify-between">
           {data.submenu.map((item, index) => (

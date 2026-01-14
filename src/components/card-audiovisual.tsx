@@ -2,14 +2,14 @@ import Link from "next/link";
 
 interface Card {
   title: string;
-  description: string;
+  id: number;
   image: string;
 }
 
 const Card1 = (props: Card) => {
   return (
     <article className="flex flex-col gap-y-2">
-      <Link href={"/audiovisual/fotografias/test"}>
+      <Link href={"/audiovisual/fotografias/" + props.id}>
         <div className="aspect-square lg:aspect-5/7">
           <img
             src={props.image}

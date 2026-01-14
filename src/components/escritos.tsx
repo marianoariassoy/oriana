@@ -7,7 +7,7 @@ interface Data {
   title: string;
   items: {
     title: string;
-    description: string;
+    text: string;
   }[];
 }
 
@@ -84,7 +84,7 @@ const page = ({ data }: { data: Data[] }) => {
           {activeItem.title}
         </h1>
         <p className="whitespace-pre-line lg:text-lg font-display text-foreground leading-relaxed">
-          {activeItem.description}
+          {activeItem.text}
         </p>
       </div>
       <div className="w-1/3">{/* empty */}</div>

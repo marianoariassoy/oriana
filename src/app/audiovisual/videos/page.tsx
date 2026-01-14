@@ -1,38 +1,38 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/sectionlayout";
 import CardVideo from "@/components/card-video";
 import Bullets from "@/components/bullets";
+import Loader from "@/components/loading";
+
+interface data {
+  id: number;
+  title: string;
+  video: string;
+}
 
 const page = () => {
+  const lan = "es";
   const [image, setImage] = useState(1);
+  const [data, setData] = useState<data[]>([]);
+  const [loading, setLoading] = useState(true);
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/videos/" + lan;
 
-  const data = [
-    {
-      title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      video: "https://www.youtube.com/watch?v=9v4ucnOP-XI",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      video: "https://www.youtube.com/watch?v=UA0V0vN2-Kg",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      video: "https://www.youtube.com/watch?v=SiL1FWnK3DM",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      video: "https://www.youtube.com/watch?v=9v4ucnOP-XI",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      video: "https://www.youtube.com/watch?v=UA0V0vN2-Kg",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      video: "https://www.youtube.com/watch?v=SiL1FWnK3DM",
-    },
-  ];
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await fetch(apiURL);
+        if (!res.ok) throw new Error("Error al obtener datos de productos");
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getData();
+  }, []);
 
   const goTo = (id: number) => {
     setImage(id);
@@ -45,16 +45,20 @@ const page = () => {
     <Layout section="audiovisual" subsection="Videos">
       <Bullets data={data} goTo={goTo} image={image} />
 
-      <div className="flex flex-col py-16 gap-y-12 w-full mx-auto max-w-3xl fade-in">
-        {data.map((item, index) => (
-          <CardVideo
-            key={index}
-            title={item.title}
-            video={item.video}
-            index={index}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="flex flex-col py-16 gap-y-12 w-full mx-auto max-w-3xl fade-in">
+          {data.map((item, index) => (
+            <CardVideo
+              key={index}
+              title={item.title}
+              video={item.video}
+              index={index}
+            />
+          ))}
+        </div>
+      )}
     </Layout>
   );
 };
