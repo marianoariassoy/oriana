@@ -74,15 +74,16 @@ const sectionLayout = ({
           Oriana Favaro
         </div>
         <div
-          className={`text-xl lg:text-4xl font-display flex items-center gap-x-2 text-foreground/60 transition-all duration-300 ease-in-out  ${
+          className={`text-xl lg:text-4xl font-display flex items-center gap-x-2 text-foreground/60 transition-all duration-300 ease-in-out leading-snug ${
             mounted ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <Link
-            href="/"
-            className="hover:text-[var(--color)] translate-[0.1rem]"
-          >
-            <Asterisco />
+          <Link href="/">
+            <img
+              src="/assets/circulo.png"
+              alt="logo"
+              className="h-8 opacity-70 hover:opacity-100"
+            />
           </Link>
           /
           <Link className="hover:text-[var(--color)]" href={`${data.href}`}>

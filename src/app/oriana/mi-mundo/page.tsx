@@ -50,7 +50,9 @@ const page = () => {
 
       <div className="py-16 w-full mx-auto max-w-3xl fade-in">
         <h2 className="font-display text-xl lg:text-3xl mb-20">
-          Algunas reflexiones. Ideas lanzadas al mundo. <br /> Formas de ver...
+          Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos,
+          dibujos, historias... <br />
+          La expresión de mi existencia puesta en palabras.
         </h2>
         {loading ? (
           <Loader />

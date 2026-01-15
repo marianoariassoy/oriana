@@ -1,29 +1,18 @@
 "use client";
-import Layout from "@/components/sectionlayout";
 import { useState, useEffect } from "react";
-import CardMusica from "@/components/card-musica";
-import Modal from "@/components/modal";
 import Loader from "@/components/loading";
-
-interface images {
-  id: number;
-  title: string;
-  image: string;
-}
 
 interface data {
   id: number;
   title: string;
-  image: string;
-  images: images[];
+  url: string;
 }
 
 const page = () => {
   const lan = "es";
-  const [dataModal, setDataModal] = useState(null);
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/opera-y-mas/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/prensa/" + lan;
 
   useEffect(() => {
     async function getData() {
@@ -43,27 +32,27 @@ const page = () => {
 
   return (
     <>
-      <Layout section="música" subsection="Popular">
+      <div className="flex flex-col gap-y-8">
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-8 grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
+          <div className="py-16 w-full mx-auto max-w-3xl fade-in flex flex-col gap-y-4">
             {data.map((item, index) => (
-              <CardMusica
-                key={index}
-                title={item.title}
-                image={item.image}
-                images={item.images}
-                setDataModal={setDataModal}
-              />
+              <article key={index}>
+                <h3 className="text-xl">{item.title}</h3>
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-foreground hover:underline"
+                >
+                  {item.url}
+                </a>
+              </article>
             ))}
           </div>
         )}
-      </Layout>
-
-      {dataModal ? (
-        <Modal dataModal={dataModal} setDataModal={setDataModal} />
-      ) : null}
+      </div>
     </>
   );
 };

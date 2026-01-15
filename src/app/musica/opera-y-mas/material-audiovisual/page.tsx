@@ -1,5 +1,4 @@
 "use client";
-import Layout from "@/components/sectionlayout";
 import { useState, useEffect } from "react";
 import CardMusica from "@/components/card-musica";
 import Modal from "@/components/modal";
@@ -43,11 +42,11 @@ const page = () => {
 
   return (
     <>
-      <Layout section="música" subsection="Popular">
+      <div className="py-8">
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-8 grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
             {data.map((item, index) => (
               <CardMusica
                 key={index}
@@ -59,7 +58,7 @@ const page = () => {
             ))}
           </div>
         )}
-      </Layout>
+      </div>
 
       {dataModal ? (
         <Modal dataModal={dataModal} setDataModal={setDataModal} />

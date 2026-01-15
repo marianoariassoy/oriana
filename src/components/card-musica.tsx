@@ -1,15 +1,16 @@
 interface Card {
   title: string;
   image: string;
+  images: any;
   setDataModal: any;
 }
 
-const CardMusica = ({ title, image, setDataModal }: Card) => {
+const CardMusica = ({ title, image, images, setDataModal }: Card) => {
   return (
     <article className="flex flex-col gap-y-2">
       <button
         className="w-full cursor-pointer hover:opacity-80 transition-opacity"
-        onClick={() => setDataModal({ title, image })}
+        onClick={() => setDataModal(images)}
       >
         <img
           src={image}
