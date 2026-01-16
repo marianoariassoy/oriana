@@ -4,6 +4,7 @@ import Layout from "@/components/sectionlayout";
 import Card from "@/components/card-foto";
 import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
+import Creditos from "./creditos";
 
 interface data {
   id: number;
@@ -48,15 +49,18 @@ const page = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="py-16 flex flex-col gap-y-4 w-full mx-auto max-w-3xl fade-in">
-          {data.map((item, index) => (
-            <Card
-              key={index}
-              title={item.title}
-              image={item.image}
-              index={index}
-            />
-          ))}
+        <div className="py-16 flex flex-col gap-y-9 w-full mx-auto max-w-3xl fade-in">
+          <Creditos />
+          <div className="flex flex-col gap-y-4">
+            {data.map((item, index) => (
+              <Card
+                key={index}
+                title={item.title}
+                image={item.image}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       )}
     </Layout>

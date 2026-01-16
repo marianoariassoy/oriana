@@ -4,6 +4,7 @@ import Loader from "@/components/loading";
 
 interface data {
   id: number;
+  title: string;
   text: string;
 }
 
@@ -35,9 +36,14 @@ const page = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-16 w-full mx-auto max-w-3xl fade-in text-foreground">
+          <div className="py-16 w-full mx-auto max-w-3xl fade-in ">
             {data.map((item, index) => (
-              <div key={index}>{item.text}</div>
+              <div key={index}>
+                <h4 className="mb-4 text-lg">{item.title}</h4>
+                <p className="whitespace-break-spaces text-foreground">
+                  {item.text}
+                </p>
+              </div>
             ))}
           </div>
         )}

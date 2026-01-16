@@ -1,8 +1,9 @@
 import ReactPlayer from "react-player";
+import { formatDateFromTimestamp } from "@/utils/date";
 
 interface Card {
   title: string;
-  date: string;
+  date: number;
   description: string;
   image?: string;
   video?: string;
@@ -16,7 +17,9 @@ const CardBlog = ({ title, date, description, image, video, index }: Card) => {
       id={`video-${index + 1}`}
     >
       <header>
-        <h3 className="font-bold text-foreground lg:text-xl">{date}</h3>
+        <h3 className="font-bold text-foreground lg:text-xl">
+          {formatDateFromTimestamp(date)}
+        </h3>
         <h2 className="font-bold text-xl lg:text-4xl">{title}</h2>
       </header>
       {image && (
