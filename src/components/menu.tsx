@@ -1,6 +1,7 @@
 import { nav } from "@/lib/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 const menu = ({
   open,
@@ -10,6 +11,7 @@ const menu = ({
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const pathname = usePathname();
+  const { lang } = useLanguage();
 
   const paddins = [
     "pl-2 lg:pl-10",
@@ -50,7 +52,9 @@ const menu = ({
               }
               `}
             >
-              <Link href={item.href}>{item.name}</Link>
+              <Link href={item.href}>
+                {lang === "es" ? item.name : item.name_en}
+              </Link>
             </li>
           ))}
         </ul>

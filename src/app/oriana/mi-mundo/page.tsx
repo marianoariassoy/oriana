@@ -5,6 +5,7 @@ import CardBlog from "@/components/card-blog";
 import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
 import Aside from "./aside";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Item {
   id: number;
@@ -24,13 +25,13 @@ const getRange = (year: number, month: number) => {
 };
 
 const Page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [year, setYear] = useState<number>();
   const [month, setMonth] = useState<number>();
   const [image, setImage] = useState(1);
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/mi-mundo/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/mi-mundo/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -64,16 +65,20 @@ const Page = () => {
   };
 
   return (
-    <Layout section="oriana" subsection="Mi Mundo">
+    <Layout
+      section="oriana"
+      subsection={lang === "es" ? "Mi mundo" : "My world"}
+    >
       <Bullets data={filteredItems} goTo={goTo} image={image} />
 
-      <div className="py-16 w-full flex flex-col lg:flex-row gap-4 fade-in">
+      <div className="py-8 lg:py-16 w-full flex flex-col lg:flex-row gap-4 fade-in">
         <div className="lg:w-1/3">
           {!loading && (
             <Aside
               items={data}
               selectedYear={year}
               selectedMonth={month}
+              lang={lang}
               onSelect={(y, m) => {
                 setYear(y);
                 setMonth(m);
@@ -83,9 +88,11 @@ const Page = () => {
         </div>
         <div className="lg:w-2/3">
           <h2 className="font-display text-xl lg:text-3xl mb-20">
-            Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos,
-            dibujos, historias... <br />
-            La expresión de mi existencia puesta en palabras.
+            {lang === "es"
+              ? `Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos, dibujos, historias... 
+            La expresión de mi existencia puesta en palabras.`
+              : `Expressions, ideas, thoughts, theories, confessions, projects, drawings, stories... 
+            The expression of my existence put into words.`}
           </h2>
           {loading ? (
             <Loader />
@@ -100,6 +107,7 @@ const Page = () => {
                   image={item.image}
                   video={item.video}
                   index={index}
+                  lang={lang}
                 />
               ))}
             </div>

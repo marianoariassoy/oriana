@@ -7,11 +7,10 @@ interface data {
   text: string;
 }
 
-const creditos = () => {
-  const lan = "es";
+const creditos = ({ lang }: { lang: string }) => {
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lang;
 
   useEffect(() => {
     async function getData() {

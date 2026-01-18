@@ -1,18 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   id: number;
   title: string;
   url: string;
+  text: string;
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/prensa/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/prensa/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -36,15 +38,18 @@ const page = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-16 w-full mx-auto max-w-3xl fade-in flex flex-col gap-y-4">
+          <div className="py-8 lg:py-16 w-full mx-auto max-w-3xl fade-in flex flex-col gap-y-4">
             {data.map((item, index) => (
-              <article key={index}>
-                <h3 className="text-xl">{item.title}</h3>
+              <article key={index} className="flex flex-col">
+                <h3 className="text-xl text-foreground">{item.title}</h3>
+                <p className="text-foreground/60 leading-snug text-sm lg:text-base whitespace-break-spaces font-display">
+                  {item.text}
+                </p>
                 <a
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-foreground hover:underline"
+                  className="hover:underline mt-2 italic font-display"
                 >
                   {item.url}
                 </a>

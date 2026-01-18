@@ -3,6 +3,7 @@ import { Alegreya_Sans, Piazzolla } from "next/font/google";
 import "./globals.css";
 import "./hamburguer.css";
 import Header from "@/components/header";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const font = Alegreya_Sans({
   subsets: ["latin"],
@@ -62,8 +63,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`bg-secondary ${font.variable} ${font2.variable}`}>
-        <Header />
-        <main>{children}</main>
+        <LanguageProvider>
+          <Header />
+          <main>{children}</main>
+        </LanguageProvider>
       </body>
     </html>
   );

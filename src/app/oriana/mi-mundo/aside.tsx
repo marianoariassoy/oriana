@@ -18,12 +18,14 @@ interface AsideArchiveProps {
   onSelect?: (year: number, month: number) => void;
   selectedYear?: number;
   selectedMonth?: number;
+  lang: string;
 }
 
 export function AsideArchive({
   items,
   selectedYear,
   selectedMonth,
+  lang,
   onSelect,
 }: AsideArchiveProps) {
   const archive: ArchiveData = items.reduce((acc, item) => {
@@ -57,9 +59,12 @@ export function AsideArchive({
                       type="button"
                       onClick={() => onSelect?.(year, month)}
                     >
-                      {new Date(year, month - 1).toLocaleString("es-AR", {
-                        month: "long",
-                      })}
+                      {new Date(year, month - 1).toLocaleString(
+                        lang === "es" ? "es-AR" : "en-US",
+                        {
+                          month: "long",
+                        },
+                      )}
                     </button>
                   </li>
                 );

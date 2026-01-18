@@ -2,27 +2,26 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const categories = () => {
-  // const lan = "es";
+const categories = ({ lang }: { lang: string }) => {
   const pathname = usePathname();
 
   const data = [
     {
       id: 1,
       name: "Repertorio",
-      name_es: "Repertorio",
+      name_en: "Repertoire",
       href: "/musica/opera-y-mas/repertorio",
     },
     {
       id: 2,
       name: "Material audiovisual",
-      name_es: "Material audiovisual",
+      name_en: "Audiovisual material",
       href: "/musica/opera-y-mas/material-audiovisual",
     },
     {
       id: 3,
       name: "Prensa",
-      name_es: "Press",
+      name_en: "Press",
       href: "/musica/opera-y-mas/prensa",
     },
   ];
@@ -42,7 +41,7 @@ const categories = () => {
                     : "hover:bg-2 hover:border-2"
                 }`}
         >
-          {item.name}
+          {lang === "es" ? item.name : item.name_en}
         </Link>
       ))}
     </header>

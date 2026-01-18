@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
 import Card from "@/components/card-audiovisual";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   id: number;
@@ -11,10 +12,10 @@ interface data {
   image: string;
 }
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos-audiovisual/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos-audiovisual/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -33,7 +34,10 @@ const page = () => {
   }, []);
 
   return (
-    <Layout section="audiovisual" subsection="Fotografías">
+    <Layout
+      section="audiovisual"
+      subsection={lang === "es" ? "Fotografías" : "Photos"}
+    >
       {loading ? (
         <Loader />
       ) : (

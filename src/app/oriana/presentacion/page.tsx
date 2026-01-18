@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
+import Layout from "@/components/sectionlayout";
 import Loader from "@/components/loading";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   id: number;
@@ -9,10 +11,10 @@ interface data {
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/repertorio/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -31,24 +33,22 @@ const page = () => {
   }, []);
 
   return (
-    <>
-      <div className="flex flex-col gap-y-8">
-        {loading ? (
-          <Loader />
-        ) : (
-          <div className="py-8 lg:py-16 w-full mx-auto max-w-3xl fade-in ">
-            {data.map((item, index) => (
-              <div key={index}>
-                <h4 className="mb-4 text-xl">{item.title}</h4>
-                <p className="whitespace-break-spaces text-foreground text-lg">
-                  {item.text}
-                </p>
-              </div>
-            ))}
+    <Layout
+      section="oriana"
+      subsection={lang === "es" ? "Presentación" : "Presentation"}
+    >
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="py-16 w-full mx-auto max-w-3xl fade-in">
+          <div>
+            <p className="whitespace-break-spaces text-foreground font-display text-lg leading-snug">
+              {data[0].text}
+            </p>
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </Layout>
   );
 };
 

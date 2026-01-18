@@ -5,6 +5,7 @@ import Card from "@/components/card-foto";
 import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
 import Creditos from "./creditos";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   id: number;
@@ -13,11 +14,11 @@ interface data {
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [image, setImage] = useState(1);
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -43,14 +44,14 @@ const page = () => {
   };
 
   return (
-    <Layout section="oriana" subsection="Fotos">
+    <Layout section="oriana" subsection={lang === "es" ? "Fotos" : "Photos"}>
       <Bullets data={data} goTo={goTo} image={image} />
 
       {loading ? (
         <Loader />
       ) : (
-        <div className="py-16 flex flex-col gap-y-9 w-full mx-auto max-w-3xl fade-in">
-          <Creditos />
+        <div className="py-8 lg:py-16 flex flex-col gap-y-9 w-full mx-auto max-w-3xl fade-in">
+          <Creditos lang={lang} />
           <div className="flex flex-col gap-y-4">
             {data.map((item, index) => (
               <Card

@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Layout from "@/components/sectionlayout";
 import Back from "@/components/back";
 import Loader from "@/components/loading";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   id: number;
@@ -13,7 +14,7 @@ interface data {
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const id = parseInt(useParams().id as string);
   const [data, setData] = useState<data>({
     id: 0,
@@ -23,7 +24,7 @@ const page = () => {
   });
   const [loading, setLoading] = useState(true);
   const apiURL =
-    process.env.NEXT_PUBLIC_API_URL + "/fotos-audiovisual/" + id + "/" + lan;
+    process.env.NEXT_PUBLIC_API_URL + "/fotos-audiovisual/" + id + "/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -42,7 +43,10 @@ const page = () => {
   }, []);
 
   return (
-    <Layout section="audiovisual" subsection="Fotografías">
+    <Layout
+      section="audiovisual"
+      subsection={lang === "es" ? "Fotografías" : "Photos"}
+    >
       {loading ? (
         <Loader />
       ) : (

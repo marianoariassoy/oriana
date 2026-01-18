@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import CardMusica from "@/components/card-musica";
 import Modal from "@/components/modal";
 import Loader from "@/components/loading";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface images {
   id: number;
@@ -18,11 +19,11 @@ interface data {
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [dataModal, setDataModal] = useState(null);
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/opera-y-mas/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/opera-y-mas/" + lang;
 
   useEffect(() => {
     async function getData() {

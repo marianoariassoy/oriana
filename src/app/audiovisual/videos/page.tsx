@@ -4,6 +4,7 @@ import Layout from "@/components/sectionlayout";
 import CardVideo from "@/components/card-video";
 import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   id: number;
@@ -12,11 +13,11 @@ interface data {
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [image, setImage] = useState(1);
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/videos/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/videos/" + lang;
 
   useEffect(() => {
     async function getData() {

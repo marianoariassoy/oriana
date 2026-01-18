@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
 import Escritos from "@/components/escritos";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   category: number;
@@ -17,10 +18,10 @@ interface item {
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/escritos/cuentos/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/escritos/cuentos/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -39,7 +40,10 @@ const page = () => {
   }, []);
 
   return (
-    <Layout section="escritos" subsection="Cuentos">
+    <Layout
+      section="escritos"
+      subsection={lang === "es" ? "Cuentos" : "Stories"}
+    >
       {loading ? (
         <Loader />
       ) : data[0].items.length > 0 ? (

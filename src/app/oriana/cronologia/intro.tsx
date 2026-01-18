@@ -8,11 +8,10 @@ interface data {
   text: string;
 }
 
-const intro = () => {
-  const lan = "es";
+const intro = ({ lang }: { lang: string }) => {
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -36,7 +35,7 @@ const intro = () => {
     <section className="flex flex-col gap-y-8">
       <div>
         <h2 className="font-bold text-xl lg:text-3xl mb-2">
-          Formación académica
+          {lang === "es" ? "Formación académica" : "Academic training"}
         </h2>
         <p className="font-display text-foreground leading-snug text-sm lg:text-base whitespace-break-spaces">
           {data[5].text}
@@ -44,7 +43,9 @@ const intro = () => {
       </div>
       <div>
         <h2 className="font-bold text-xl lg:text-3xl mb-2">
-          Formación en Artes Plásticas
+          {lang === "es"
+            ? "Formación en Artes Plásticas"
+            : "Training in Arts and Crafts"}
         </h2>
         <p className="font-display text-foreground leading-snug text-sm lg:text-base whitespace-break-spaces">
           {data[6].text}

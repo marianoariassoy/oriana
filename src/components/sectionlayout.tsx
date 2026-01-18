@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { nav } from "@/lib/data";
-import { Asterisco } from "@/lib/icons";
 import GoUp from "@/components/goup";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Submenu {
   name: string;
@@ -16,8 +16,6 @@ interface Section {
   name_en: string;
   href: string;
   color: string;
-  description: string;
-  description_en: string;
   submenu: Submenu[];
 }
 
@@ -30,14 +28,13 @@ const sectionLayout = ({
   subsection: string;
   children: React.ReactNode;
 }) => {
+  const { lang } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [data, setData] = useState({
     name: "",
     name_en: "",
     href: "",
     color: "",
-    description: "",
-    description_en: "",
     submenu: [
       {
         name: "",
@@ -54,7 +51,7 @@ const sectionLayout = ({
   useEffect(() => {
     if (section) {
       const result = nav.find(
-        (item) => item.name.toLowerCase() === section.toLowerCase()
+        (item) => item.name.toLowerCase() === section.toLowerCase(),
       ) as Section;
       setData(result);
     }
@@ -87,7 +84,7 @@ const sectionLayout = ({
           </Link>
           /
           <Link className="hover:text-[var(--color)]" href={`${data.href}`}>
-            {data.name}
+            {lang === "es" ? data.name : data.name_en}
           </Link>
           /<span className="italic text-[var(--color)]">{subsection}</span>
         </div>

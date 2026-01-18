@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
 import Escritos from "@/components/escritos";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   category: number;
@@ -17,10 +18,10 @@ interface item {
 }
 
 const page = () => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/escritos/poesia/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/escritos/poesia/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -39,12 +40,13 @@ const page = () => {
   }, []);
 
   return (
-    <Layout section="escritos" subsection="Poesía">
+    <Layout section="escritos" subsection={lang === "es" ? "Poesía" : "Poetry"}>
       {loading ? (
         <Loader />
       ) : data[0].items.length > 0 ? (
         <Escritos data={data} />
-      ) : null}
+      ) : // <div>Poesía</div>
+      null}
     </Layout>
   );
 };

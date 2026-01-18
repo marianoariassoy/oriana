@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { nav } from "@/lib/data";
 import Link from "next/link";
 import Loader from "@/components/loading";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
   id: number;
@@ -25,7 +26,7 @@ interface Section {
 }
 
 const home = ({ section }: { section: string }) => {
-  const lan = "es";
+  const { lang } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [description, setDescription] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
@@ -42,7 +43,7 @@ const home = ({ section }: { section: string }) => {
       },
     ],
   });
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/textos/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -52,7 +53,7 @@ const home = ({ section }: { section: string }) => {
         const data = await res.json();
 
         const result = data.filter(
-          (item: data) => item.section.toLowerCase() === section.toLowerCase()
+          (item: data) => item.section.toLowerCase() === section.toLowerCase(),
         );
         setDescription(result);
       } catch (error) {
@@ -71,7 +72,7 @@ const home = ({ section }: { section: string }) => {
   useEffect(() => {
     if (section) {
       const result = nav.find(
-        (item) => item.name.toLowerCase() === section.toLowerCase()
+        (item) => item.name.toLowerCase() === section.toLowerCase(),
       ) as Section;
 
       setData(result);
@@ -93,20 +94,20 @@ const home = ({ section }: { section: string }) => {
         Oriana Favaro
       </div>
       <div
-        className={`w-full max-w-2xl flex flex-col gap-y-8 mt-30 lg:mt-0 
+        className={`w-full max-w-2xl flex flex-col gap-y-6 mt-30 lg:mt-0 
           transition-all duration-300 ease-in-out ${
             mounted ? "lg:translate-x-0" : "lg:translate-x-full"
           }`}
       >
-        <h1 className="font-display text-5xl lg:text-8xl w-full italic border-b text-right border-[var(--hover-color)] lg:leading-20 pr-4">
-          {data.name}
+        <h1 className="font-display text-4xl lg:text-8xl w-full italic border-b border-[var(--hover-color)] lg:leading-20 pr-4 lg:text-center px-4">
+          {lang === "es" ? data.name : data.name_en}
         </h1>
-        <div className="lg:h-40 overflow-y-auto">
+        <div className="lg:h-30">
           {loading ? (
             <Loader />
           ) : (
-            <p className="text-foreground whitespace-break-spaces text-justify text-lg leading-tight">
-              {description[0].text}
+            <p className="text-foreground whitespace-break-spaces lg:text-center text-xl leading-tight font-display">
+              {section !== "oriana" && description[0].text}
             </p>
           )}
         </div>
@@ -117,7 +118,7 @@ const home = ({ section }: { section: string }) => {
               key={index}
               className="border border-[var(--hover-color)] h-12 w-full  lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium"
             >
-              <span>{item.name}</span>
+              <span>{lang === "es" ? item.name : item.name_en}</span>
             </Link>
           ))}
         </div>
@@ -128,14 +129,16 @@ const home = ({ section }: { section: string }) => {
                 href="mailto:#"
                 className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium"
               >
-                Envíame tu consulta
+                {lang === "es" ? "Envíame tu consulta" : "Send me your query"}
               </a>
             </div>
             <a
               href="https://fabianmuggeri.com"
               className="lg:hidden text-foreground hover:underline"
             >
-              Diseño y fabianmuggeri.com
+              {lang === "es"
+                ? "Diseño fabianmuggeri.com"
+                : "Design fabianmuggeri.com"}
             </a>
           </>
         )}
@@ -143,7 +146,9 @@ const home = ({ section }: { section: string }) => {
       {section === "contacto" && (
         <div className="fixed right-0 translate-x-12 top-1/2 -translate-y-1/2  text-sm text-foreground rotate-90 hidden lg:block">
           <a href="https://fabianmuggeri.com" className="hover:underline">
-            Diseño y fabianmuggeri.com
+            {lang === "es"
+              ? "Diseño fabianmuggeri.com"
+              : "Design fabianmuggeri.com"}
           </a>
         </div>
       )}

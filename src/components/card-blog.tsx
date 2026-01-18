@@ -8,9 +8,18 @@ interface Card {
   image?: string;
   video?: string;
   index: number;
+  lang: string;
 }
 
-const CardBlog = ({ title, date, description, image, video, index }: Card) => {
+const CardBlog = ({
+  title,
+  date,
+  description,
+  image,
+  video,
+  index,
+  lang,
+}: Card) => {
   return (
     <article
       className="flex flex-col gap-y-4 font-display pb-12 border-b border-1"
@@ -18,7 +27,7 @@ const CardBlog = ({ title, date, description, image, video, index }: Card) => {
     >
       <header>
         <h3 className="font-bold text-foreground lg:text-xl">
-          {formatDateFromTimestamp(date)}
+          {formatDateFromTimestamp(date, lang)}
         </h3>
         <h2 className="font-bold text-xl lg:text-4xl">{title}</h2>
       </header>

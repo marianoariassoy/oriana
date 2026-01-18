@@ -10,11 +10,10 @@ interface data {
   category: number;
 }
 
-const items = () => {
-  const lan = "es";
+const items = ({ lang }: { lang: string }) => {
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/cronologia/" + lan;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/cronologia/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -37,7 +36,7 @@ const items = () => {
     <section className="flex flex-col gap-y-8">
       <div>
         <h2 className="font-bold text-xl lg:text-3xl mb-2">
-          Formación musical
+          {lang === "es" ? "Formación musical" : "Musical training"}
         </h2>
         <div className="flex flex-col gap-y-4">
           {data
@@ -49,7 +48,7 @@ const items = () => {
       </div>
       <div>
         <h2 className="font-bold text-xl lg:text-3xl mb-2">
-          Docencia universitaria
+          {lang === "es" ? "Docencia universitaria" : "University training"}
         </h2>
         <div className="flex flex-col gap-y-4">
           {data
@@ -60,7 +59,9 @@ const items = () => {
         </div>
       </div>
       <div>
-        <h2 className="font-bold text-xl lg:text-3xl mb-2">Reconocimientos</h2>
+        <h2 className="font-bold text-xl lg:text-3xl mb-2">
+          {lang === "es" ? "Reconocimientos" : "Recognitions"}
+        </h2>
         <div className="flex flex-col gap-y-4">
           {data
             .filter((item) => item.category === 6)

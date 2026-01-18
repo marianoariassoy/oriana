@@ -8,6 +8,11 @@ export const nav = [
     color: "rgb(183, 34, 112)",
     submenu: [
       {
+        name: "Presentación",
+        name_en: "Presentation",
+        href: "/oriana/presentacion",
+      },
+      {
         name: "Cronología",
         name_en: "Chronology",
         href: "/oriana/cronologia",
@@ -56,17 +61,16 @@ export const nav = [
       },
       {
         name: "Fotografías",
-        name_en: "Fotografías",
+        name_en: "Photos",
         href: "/audiovisual/fotografias",
       },
     ],
   },
   {
     name: "Escritos",
-    name_en: "",
+    name_en: "Writings",
     href: "/escritos",
     color: "rgb(0, 167, 157)",
-
     submenu: [
       {
         name: "Poesía",
