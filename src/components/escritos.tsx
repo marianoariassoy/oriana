@@ -86,6 +86,7 @@ const page = ({ data }: { data: Data[] }) => {
         <p className="whitespace-pre-line lg:text-lg font-display text-foreground leading-relaxed">
           {activeItem.text}
         </p>
+        <div className="text-right mt-8 italic">Oriana</div>
       </div>
       <div className="w-1/3">{/* empty */}</div>
     </div>

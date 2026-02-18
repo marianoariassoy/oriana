@@ -33,6 +33,7 @@ const page = () => {
     getData();
   }, []);
 
+  console.log(data);
   return (
     <Layout
       section="audiovisual"
@@ -45,7 +46,7 @@ const page = () => {
           {data.map((item, index) => (
             <Card
               key={index}
-              id={item.id}
+              url={"/audiovisual/fotografias/" + item.id}
               title={item.title}
               image={item.image}
             />

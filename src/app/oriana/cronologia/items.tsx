@@ -35,7 +35,7 @@ const items = ({ lang }: { lang: string }) => {
   return (
     <section className="flex flex-col gap-y-8">
       <div>
-        <h2 className="font-bold text-xl lg:text-3xl mb-2">
+        <h2 className="text-lg lg:text-xl">
           {lang === "es" ? "Formación musical" : "Musical training"}
         </h2>
         <div className="flex flex-col gap-y-4">
@@ -47,7 +47,7 @@ const items = ({ lang }: { lang: string }) => {
         </div>
       </div>
       <div>
-        <h2 className="font-bold text-xl lg:text-3xl mb-2">
+        <h2 className="text-lg lg:text-xl">
           {lang === "es" ? "Docencia universitaria" : "University training"}
         </h2>
         <div className="flex flex-col gap-y-4">
@@ -59,7 +59,7 @@ const items = ({ lang }: { lang: string }) => {
         </div>
       </div>
       <div>
-        <h2 className="font-bold text-xl lg:text-3xl mb-2">
+        <h2 className="text-lg lg:text-xl mb-2">
           {lang === "es" ? "Reconocimientos" : "Recognitions"}
         </h2>
         <div className="flex flex-col gap-y-4">

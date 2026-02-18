@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Layout from "@/components/sectionlayout";
-import Card from "@/components/card-foto";
+import Card from "@/components/card-audiovisual";
 import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
 import Creditos from "./creditos";
@@ -50,19 +50,19 @@ const page = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="py-8 lg:py-16 flex flex-col gap-y-9 w-full mx-auto max-w-3xl fade-in">
+        <section className="lg:px-12 py-16 fade-in flex flex-col gap-y-8">
           <Creditos lang={lang} />
-          <div className="flex flex-col gap-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-y-12 ">
             {data.map((item, index) => (
               <Card
                 key={index}
+                url={"/oriana/fotos/" + item.id}
                 title={item.title}
                 image={item.image}
-                index={index}
               />
             ))}
           </div>
-        </div>
+        </section>
       )}
     </Layout>
   );

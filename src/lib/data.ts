@@ -8,11 +8,6 @@ export const nav = [
     color: "rgb(183, 34, 112)",
     submenu: [
       {
-        name: "Presentación",
-        name_en: "Presentation",
-        href: "/oriana/presentacion",
-      },
-      {
         name: "Cronología",
         name_en: "Chronology",
         href: "/oriana/cronologia",

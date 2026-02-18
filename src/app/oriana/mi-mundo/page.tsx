@@ -71,8 +71,17 @@ const Page = () => {
     >
       <Bullets data={filteredItems} goTo={goTo} image={image} />
 
-      <div className="py-8 lg:py-16 w-full flex flex-col lg:flex-row gap-4 fade-in">
-        <div className="lg:w-1/3">
+      <div className="pt-8 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div>
+          <h2 className="font-display text-lg lg:text-xl mb-4 text-primary">
+            {lang === "es"
+              ? `Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos, dibujos, historias... 
+            La expresión de mi existencia puesta en palabras.`
+              : `Expressions, ideas, thoughts, theories, confessions, projects, drawings, stories... 
+            The expression of my existence put into words.`}
+          </h2>
+        </div>
+        <div className="flex lg:justify-end lg:pr-60">
           {!loading && (
             <Aside
               items={data}
@@ -86,14 +95,10 @@ const Page = () => {
             />
           )}
         </div>
+      </div>
+      <div className="pb-8 lg:pb-16 w-full flex flex-col lg:flex-row gap-4 fade-in">
+        <div className="lg:w-1/3"></div>
         <div className="lg:w-2/3">
-          <h2 className="font-display text-xl lg:text-3xl mb-20">
-            {lang === "es"
-              ? `Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos, dibujos, historias... 
-            La expresión de mi existencia puesta en palabras.`
-              : `Expressions, ideas, thoughts, theories, confessions, projects, drawings, stories... 
-            The expression of my existence put into words.`}
-          </h2>
           {loading ? (
             <Loader />
           ) : (

@@ -34,7 +34,7 @@ const intro = ({ lang }: { lang: string }) => {
   return (
     <section className="flex flex-col gap-y-8">
       <div>
-        <h2 className="font-bold text-xl lg:text-3xl mb-2">
+        <h2 className="text-lg lg:text-xl">
           {lang === "es" ? "Formación académica" : "Academic training"}
         </h2>
         <p className="font-display text-foreground leading-snug text-sm lg:text-base whitespace-break-spaces">
@@ -42,7 +42,7 @@ const intro = ({ lang }: { lang: string }) => {
         </p>
       </div>
       <div>
-        <h2 className="font-bold text-xl lg:text-3xl mb-2">
+        <h2 className="text-lg lg:text-xl">
           {lang === "es"
             ? "Formación en Artes Plásticas"
             : "Training in Arts and Crafts"}

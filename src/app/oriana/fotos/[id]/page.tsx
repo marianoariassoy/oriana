@@ -26,8 +26,7 @@ const page = () => {
     next: "",
   });
   const [loading, setLoading] = useState(true);
-  const apiURL =
-    process.env.NEXT_PUBLIC_API_URL + "/fotos-audiovisual/" + id + "/" + lang;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos/" + id + "/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -46,10 +45,7 @@ const page = () => {
   }, []);
 
   return (
-    <Layout
-      section="audiovisual"
-      subsection={lang === "es" ? "Fotografías" : "Photos"}
-    >
+    <Layout section="oriana" subsection={lang === "es" ? "Fotos" : "Photos"}>
       {loading ? (
         <Loader />
       ) : (
@@ -63,11 +59,11 @@ const page = () => {
               {data.text}
             </p>
           </div>
-          <Back url="/audiovisual/fotografias" />
+          <Back url="/oriana/fotos" />
         </div>
       )}
 
-      <Forward url={"/audiovisual/fotografias/" + data.next} />
+      <Forward url={"/oriana/fotos/" + data.next} />
     </Layout>
   );
 };

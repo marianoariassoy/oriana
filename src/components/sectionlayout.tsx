@@ -64,7 +64,7 @@ const sectionLayout = ({
           "--color": data.color,
         } as React.CSSProperties
       }
-      className="text-[var(--color)] px-4 lg:px-8 max-w-[1480px] mx-auto pb-8"
+      className="text-[var(--color)] px-4 lg:px-8 max-w-1480px mx-auto pb-8"
     >
       <header className="sticky top-0 w-full lg:h-30 pb-6 lg:pb-0 border-b border-[var(--color)] bg-secondary lg:bg-secondary/70 backdrop-blur-lg pt-9 lg:pt-12 z-40">
         <div className="font-display text-3xl mb-6 text-foreground lg:hidden">
