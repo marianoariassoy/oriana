@@ -118,28 +118,14 @@ const home = ({ section }: { section: string }) => {
         <h1 className="font-display text-4xl lg:text-8xl w-full italic lg:leading-20 pr-4 lg:text-center px-4">
           {lang === "es" ? data.name : data.name_en}
         </h1>
-        <div className="relative">
-          <div className="h-30 overflow-y-auto scrollbar-hide pr-2">
-            {loading ? (
-              <Loader />
-            ) : (
-              <p className="text-foreground whitespace-break-spaces lg:text-center leading-tight font-display">
-                {description[0]?.text}
-              </p>
-            )}
-          </div>
-
-          {showFade && (
-            <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-secondary to-transparent" />
-          )}
-        </div>
-
-        <div className="flex flex-col gap-2 lg:flex-row items-center justify-center gap-x-4">
+        <div
+          className={`flex flex-col gap-2 lg:flex-row items-center justify-center gap-x-4 ${data.submenu.length > 0 ? "" : "hidden"}`}
+        >
           {data.submenu.map((item, index) => (
             <Link
               href={item.href}
               key={index}
-              className="border border-[var(--hover-color)] h-12 w-ful lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-xl shadow-md"
+              className="border border-[var(--hover-color)] h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-xl shadow-md "
             >
               <span>{lang === "es" ? item.name : item.name_en}</span>
             </Link>
@@ -150,7 +136,7 @@ const home = ({ section }: { section: string }) => {
             <div className="flex justify-center">
               <a
                 href="mailto:#"
-                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium"
+                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-xl shadow-md "
               >
                 {lang === "es" ? "Envíame tu consulta" : "Send me your query"}
               </a>
@@ -165,6 +151,21 @@ const home = ({ section }: { section: string }) => {
             </a>
           </>
         )}
+        <div className="relative">
+          <div className="h-55 overflow-y-auto scrollbar-hide pr-2">
+            {loading ? (
+              <Loader />
+            ) : (
+              <p className="text-foreground whitespace-break-spaces lg:text-center leading-tight font-display">
+                {description[0]?.text}
+              </p>
+            )}
+          </div>
+
+          {showFade && (
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-secondary to-transparent" />
+          )}
+        </div>
       </div>
       {section === "contacto" && (
         <div className="fixed right-0 translate-x-12 top-1/2 -translate-y-1/2  text-sm text-foreground rotate-90 hidden lg:block">
