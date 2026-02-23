@@ -125,7 +125,7 @@ const home = ({ section }: { section: string }) => {
             <Link
               href={item.href}
               key={index}
-              className="border border-[var(--hover-color)] h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-xl shadow-md "
+              className="border border-[var(--hover-color)] h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-xl shadow-md"
             >
               <span>{lang === "es" ? item.name : item.name_en}</span>
             </Link>
@@ -162,9 +162,9 @@ const home = ({ section }: { section: string }) => {
             )}
           </div>
 
-          {showFade && (
+          {/* {showFade && (
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-secondary to-transparent" />
-          )}
+          )} */}
         </div>
       </div>
       {section === "contacto" && (
