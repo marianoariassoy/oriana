@@ -36,7 +36,7 @@ const page = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-8 lg:py-16 w-full mx-auto max-w-3xl fade-in ">
+          <div className="py-8 lg:py-16 w-full max-w-3xl fade-in ">
             {data.map((item, index) => (
               <div key={index}>
                 <h4 className="mb-4 text-xl">{item.title}</h4>

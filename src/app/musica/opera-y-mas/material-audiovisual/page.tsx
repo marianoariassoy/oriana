@@ -43,23 +43,27 @@ const page = () => {
 
   return (
     <>
-      <div className="py-8">
-        {loading ? (
-          <Loader />
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
-            {data.map((item, index) => (
-              <CardMusica
-                key={index}
-                title={item.title}
-                image={item.image}
-                images={item.images}
-                setDataModal={setDataModal}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      <section className="py-8 lg:py-16 flex flex-col gap-y-8">
+        <h2 className="lg:text-xl">{lang === "es" ? "Fotos" : "Photos"}</h2>
+        <div>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
+              {data.map((item, index) => (
+                <CardMusica
+                  key={index}
+                  title={item.title}
+                  image={item.image}
+                  images={item.images}
+                  setDataModal={setDataModal}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+        <h2 className="lg:text-xl">{lang === "es" ? "Videos" : "Videos"}</h2>
+      </section>
 
       {dataModal ? (
         <Modal dataModal={dataModal} setDataModal={setDataModal} />

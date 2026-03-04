@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { nav } from "@/lib/data";
 import GoUp from "@/components/goup";
 import { useLanguage } from "@/context/LanguageContext";
+import { Icon } from "@/lib/icons";
 
 interface Submenu {
   name: string;
@@ -75,12 +76,8 @@ const sectionLayout = ({
             mounted ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <Link href="/">
-            <img
-              src="/assets/circulo.png"
-              alt="logo"
-              className="h-8 opacity-70 hover:opacity-100"
-            />
+          <Link href="/" className="hover:text-foreground text-[var(--color)]">
+            <Icon />
           </Link>
           /
           <Link className="hover:text-[var(--color)]" href={`${data.href}`}>

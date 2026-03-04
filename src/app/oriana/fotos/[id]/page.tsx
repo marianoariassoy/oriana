@@ -49,13 +49,12 @@ const page = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="flex flex-col lg:flex-row gap-4 py-16 relative pr-10 lg:pr-0">
-          <div className="lg:w-1/3"></div>
-          <div className="lg:w-2/3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-16 relative max-w-7xl">
+          <div className="pt-4 lg:pt-0">
             <img src={data.image} alt={data.title} className="w-full" />
           </div>
-          <div className="lg:w-1/3 lg:pr-10">
-            <p className="italic font-display leading-snug text-foreground/60 lg:pl-4 whitespace-break-spaces">
+          <div className="pr-8">
+            <p className="italic font-display leading-snug text-foreground/60 whitespace-break-spaces text-sm lg:text-base">
               {data.text}
             </p>
           </div>

@@ -71,54 +71,46 @@ const Page = () => {
     >
       <Bullets data={filteredItems} goTo={goTo} image={image} />
 
-      <div className="pt-8 lg:pt-16 grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div>
-          <h2 className="font-display text-lg lg:text-xl mb-4 text-primary">
-            {lang === "es"
-              ? `Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos, dibujos, historias... 
+      <div className="pt-8 lg:pt-16 mb-12 max-w-3xl">
+        <h2 className="font-display text-lg lg:text-xl mb-4 text-primary">
+          {lang === "es"
+            ? `Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos, dibujos, historias... 
             La expresión de mi existencia puesta en palabras.`
-              : `Expressions, ideas, thoughts, theories, confessions, projects, drawings, stories... 
+            : `Expressions, ideas, thoughts, theories, confessions, projects, drawings, stories... 
             The expression of my existence put into words.`}
-          </h2>
-        </div>
-        <div className="flex lg:justify-end lg:pr-60">
-          {!loading && (
-            <Aside
-              items={data}
-              selectedYear={year}
-              selectedMonth={month}
-              lang={lang}
-              onSelect={(y, m) => {
-                setYear(y);
-                setMonth(m);
-              }}
-            />
-          )}
-        </div>
+        </h2>
       </div>
-      <div className="pb-8 lg:pb-16 w-full flex flex-col lg:flex-row gap-4 fade-in">
-        <div className="lg:w-1/3"></div>
-        <div className="lg:w-2/3">
-          {loading ? (
-            <Loader />
-          ) : (
-            <div className="flex flex-col gap-y-10">
-              {filteredItems.map((item, index) => (
-                <CardBlog
-                  key={item.id}
-                  title={item.title}
-                  date={item.date}
-                  description={item.text}
-                  image={item.image}
-                  video={item.video}
-                  index={index}
-                  lang={lang}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="lg:w-1/3"></div>
+      <div className="pb-8 lg:pb-16 w-full flex flex-col gap-8 fade-in max-w-7xl">
+        {loading ? (
+          <Loader />
+        ) : (
+          filteredItems.map((item, index) => (
+            <CardBlog
+              key={item.id}
+              title={item.title}
+              date={item.date}
+              description={item.text}
+              image={item.image}
+              video={item.video}
+              index={index}
+              lang={lang}
+            />
+          ))
+        )}
+      </div>
+      <div className="pb-12">
+        {!loading && (
+          <Aside
+            items={data}
+            selectedYear={year}
+            selectedMonth={month}
+            lang={lang}
+            onSelect={(y, m) => {
+              setYear(y);
+              setMonth(m);
+            }}
+          />
+        )}
       </div>
     </Layout>
   );

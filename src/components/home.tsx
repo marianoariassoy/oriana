@@ -27,7 +27,6 @@ interface Section {
 
 const home = ({ section }: { section: string }) => {
   const { lang } = useLanguage();
-  const [showFade, setShowFade] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [description, setDescription] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
@@ -80,21 +79,6 @@ const home = ({ section }: { section: string }) => {
     }
   }, [section]);
 
-  useEffect(() => {
-    const el = document.getElementById("text");
-    if (!el) return;
-
-    const handleScroll = () => {
-      const isAtBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2;
-      setShowFade(!isAtBottom);
-    };
-
-    handleScroll();
-    el.addEventListener("scroll", handleScroll);
-
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [loading, description]);
-
   return (
     <section
       style={
@@ -110,14 +94,35 @@ const home = ({ section }: { section: string }) => {
         Oriana Favaro
       </div>
       <div
-        className={`w-full max-w-180 flex flex-col gap-y-8 mt-30 lg:mt-0 
-          transition-all duration-300 ease-in-out ${
-            mounted ? "lg:translate-x-0" : "lg:translate-x-full"
-          }`}
+        className={`w-full flex flex-col gap-y-8 mt-30 lg:mt-0 
+          transition-all duration-300 ease-in-out 
+          ${mounted ? "lg:translate-x-0" : "lg:translate-x-full"} 
+          ${data.name === "Oriana" ? "max-w-6xl" : "max-w-180"} 
+          `}
       >
         <h1 className="font-display text-4xl lg:text-8xl w-full italic lg:leading-20 pr-4 lg:text-center px-4">
           {lang === "es" ? data.name : data.name_en}
         </h1>
+        <div className="relative z-20">
+          <div
+            className={`overflow-y-auto scrollbar-hide pr-2 flex justify-center
+            ${data.name === "Oriana" ? "h-80 items-start" : "h-55 items-center"} 
+            `}
+          >
+            {loading ? (
+              <Loader />
+            ) : (
+              <p
+                className={`text-foreground whitespace-break-spaces leading-tight font-display lg:text-lg 
+              ${data.name === "Oriana" ? "text-left" : "lg:text-center"} 
+
+              `}
+              >
+                {description[0]?.text}
+              </p>
+            )}
+          </div>
+        </div>
         <div
           className={`flex flex-col gap-2 lg:flex-row items-center justify-center gap-x-4 ${data.submenu.length > 0 ? "" : "hidden"}`}
         >
@@ -125,7 +130,7 @@ const home = ({ section }: { section: string }) => {
             <Link
               href={item.href}
               key={index}
-              className="border border-[var(--hover-color)] h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-xl shadow-md"
+              className="border border-[var(--hover-color)] h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg shadow-md"
             >
               <span>{lang === "es" ? item.name : item.name_en}</span>
             </Link>
@@ -136,7 +141,7 @@ const home = ({ section }: { section: string }) => {
             <div className="flex justify-center">
               <a
                 href="mailto:#"
-                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-xl shadow-md "
+                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg shadow-md"
               >
                 {lang === "es" ? "Envíame tu consulta" : "Send me your query"}
               </a>
@@ -151,21 +156,6 @@ const home = ({ section }: { section: string }) => {
             </a>
           </>
         )}
-        <div className="relative">
-          <div className="h-55 overflow-y-auto scrollbar-hide pr-2">
-            {loading ? (
-              <Loader />
-            ) : (
-              <p className="text-foreground whitespace-break-spaces lg:text-center leading-tight font-display">
-                {description[0]?.text}
-              </p>
-            )}
-          </div>
-
-          {/* {showFade && (
-            <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-secondary to-transparent" />
-          )} */}
-        </div>
       </div>
       {section === "contacto" && (
         <div className="fixed right-0 translate-x-12 top-1/2 -translate-y-1/2  text-sm text-foreground rotate-90 hidden lg:block">
