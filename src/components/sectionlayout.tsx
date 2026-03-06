@@ -76,7 +76,7 @@ const sectionLayout = ({
             mounted ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <Link href="/" className="hover:text-foreground text-[var(--color)]">
+          <Link href="/" className="hover:text-[var(--color)]">
             <Icon />
           </Link>
           /

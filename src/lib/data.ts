@@ -46,7 +46,7 @@ export const nav = [
     name: "Audiovisual",
     name_en: "Audiovisual",
     href: "/audiovisual",
-    color: "rgb(239, 65, 54)",
+    color: "rgb(206, 24, 30)",
 
     submenu: [
       {
