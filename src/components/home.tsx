@@ -4,6 +4,7 @@ import { nav } from "@/lib/data";
 import Link from "next/link";
 import Loader from "@/components/loading";
 import { useLanguage } from "@/context/LanguageContext";
+import { Instagram } from "@/lib/icons";
 
 interface data {
   id: number;
@@ -100,7 +101,7 @@ const home = ({ section }: { section: string }) => {
           ${data.name === "Oriana" ? "max-w-6xl" : "max-w-180"} 
           `}
       >
-        <h1 className="font-display text-4xl lg:text-8xl w-full italic lg:leading-20 pr-4 lg:text-center px-4">
+        <h1 className="font-display text-4xl lg:text-8xl w-full italic lg:leading-20  lg:text-center lg:px-4">
           {lang === "es" ? data.name : data.name_en}
         </h1>
         <div className="relative z-20">
@@ -124,8 +125,19 @@ const home = ({ section }: { section: string }) => {
           </div>
         </div>
         <div
-          className={`flex flex-col gap-2 lg:flex-row items-center justify-center gap-x-4 ${data.submenu.length > 0 ? "" : "hidden"}`}
+          className={`flex flex-col mb-4 gap-2 lg:flex-row items-center justify-center gap-x-4 ${data.submenu.length > 0 ? "" : "hidden"}`}
         >
+          {data.name === "Oriana" && (
+            <div className="flex w-full lg:w-auto mb-4 lg:mb-0 justify-start lg:justify-center">
+              <a
+                href="https://www.instagram.com/orianafavaro"
+                className="hover:text-foreground text-3xl lg:mr-8"
+              >
+                <Instagram />
+              </a>
+            </div>
+          )}
+
           {data.submenu.map((item, index) => (
             <Link
               href={item.href}
@@ -138,7 +150,16 @@ const home = ({ section }: { section: string }) => {
         </div>
         {section === "contacto" && (
           <>
-            <div className="flex justify-center">
+            <div className="flex flex-col gap-4  lg:flex-row justify-center items-center">
+              <div className="flex w-full lg:w-auto mb-4 lg:mb-0 justify-start lg:justify-center">
+                <a
+                  href="https://www.instagram.com/orianafavaro"
+                  className="hover:text-foreground text-3xl lg:mr-8"
+                >
+                  <Instagram />
+                </a>
+              </div>
+
               <a
                 href="mailto:#"
                 className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg shadow-md"
