@@ -21,7 +21,6 @@ export default function Home() {
   useEffect(() => {
     async function getData() {
       try {
-        console.log(apiURL);
         const res = await fetch(apiURL);
         if (!res.ok) throw new Error("Error al obtener datos de productos");
         const data = await res.json();

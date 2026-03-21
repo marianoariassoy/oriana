@@ -56,7 +56,7 @@ const page = () => {
             {data.map((item, index) => (
               <Card
                 key={index}
-                url={"/oriana/fotos/" + item.id}
+                url={"/oriana/fotos/view?id=" + item.id}
                 title={item.title}
                 image={item.image}
               />

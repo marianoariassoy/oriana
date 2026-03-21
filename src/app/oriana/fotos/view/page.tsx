@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Layout from "@/components/sectionlayout";
 import Back from "@/components/back";
 import Loader from "@/components/loading";
@@ -17,7 +17,8 @@ interface data {
 
 const page = () => {
   const { lang } = useLanguage();
-  const id = parseInt(useParams().id as string);
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
   const [data, setData] = useState<data>({
     id: 0,
     title: "",
@@ -26,23 +27,28 @@ const page = () => {
     next: "",
   });
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos/" + id + "/" + lang;
+  // const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos/" + id + "/" + lang;
 
   useEffect(() => {
+    if (!id) return;
+
     async function getData() {
       try {
-        const res = await fetch(apiURL);
-        if (!res.ok) throw new Error("Error al obtener datos de productos");
-        const data = await res.json();
-        setData(data);
+        const res = await fetch(
+          process.env.NEXT_PUBLIC_API_URL + "/fotos/" + id + "/" + lang,
+        );
+
+        const json = await res.json();
+        setData(json);
       } catch (error) {
         console.error(error);
       } finally {
         setLoading(false);
       }
     }
+
     getData();
-  }, []);
+  }, [id, lang]);
 
   return (
     <Layout section="oriana" subsection={lang === "es" ? "Fotos" : "Photos"}>
@@ -62,7 +68,7 @@ const page = () => {
         </div>
       )}
 
-      <Forward url={"/oriana/fotos/" + data.next} />
+      <Forward url={"/oriana/fotos/view?id=" + data.next} />
     </Layout>
   );
 };
