@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Alegreya_Sans, Piazzolla } from "next/font/google";
 import "./globals.css";
 import "./hamburguer.css";
-// import Header from "@/components/header";
-// import { LanguageProvider } from "@/context/LanguageContext";
+import Header from "@/components/header";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const font = Alegreya_Sans({
   subsets: ["latin"],
@@ -63,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`bg-secondary ${font.variable} ${font2.variable}`}>
-        <div className="bg-black w-screen h-screen flex items-center justify-center">
+        {/* <div className="bg-black w-screen h-screen flex items-center justify-center">
           <div className="">
             <h1 className="font-display text-3xl lg:text-6xl transition-opacity duration-600 text-secondary text-center">
               Soon
@@ -72,12 +72,12 @@ export default function RootLayout({
               This page is not ready yet.
             </p>
           </div>
-        </div>
-        {/*     
+        </div> */}
+
         <LanguageProvider>
           <Header />
           <main>{children}</main>
-        </LanguageProvider> */}
+        </LanguageProvider>
       </body>
     </html>
   );
