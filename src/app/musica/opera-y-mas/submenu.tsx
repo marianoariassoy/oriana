@@ -26,15 +26,13 @@ const categories = ({ lang }: { lang: string }) => {
     },
   ];
 
-  console.log(pathname);
-
   return (
-    <header className="flex items-center gap-x-2 flex-wrap">
+    <header className="flex items-center gap-x-2 flex-wrap mt-4">
       {data.map((item, index) => (
         <Link
           key={index}
           href={item.href}
-          className={`border border-t-0 h-12 w-full lg:w-50 flex items-center justify-center cursor-pointer hover:text-white font-medium  
+          className={`border h-12 w-full lg:w-50 flex items-center justify-center cursor-pointer hover:text-white font-medium rounded-tl-2xl rounded-br-2xl  
                 ${
                   pathname === item.href
                     ? "bg-2 border-2 text-white"

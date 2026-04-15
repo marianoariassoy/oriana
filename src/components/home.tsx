@@ -142,7 +142,7 @@ const home = ({ section }: { section: string }) => {
             <Link
               href={item.href}
               key={index}
-              className="border border-[var(--hover-color)] h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg shadow-md"
+              className="border border-[var(--hover-color)] h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-[var(--hover-color)] font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg"
             >
               <span>{lang === "es" ? item.name : item.name_en}</span>
             </Link>
@@ -162,7 +162,7 @@ const home = ({ section }: { section: string }) => {
 
               <a
                 href="mailto:#"
-                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg shadow-md"
+                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg"
               >
                 {lang === "es" ? "Envíame tu consulta" : "Send me your query"}
               </a>

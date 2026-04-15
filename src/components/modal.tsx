@@ -16,7 +16,7 @@ const modal = ({
   setDataModal: any;
 }) => {
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen bg-2/50 backdrop-blur-md z-50 cursor-pointer fade-in-fast">
+    <div className="fixed top-0 left-0 h-screen w-screen bg-black/90 backdrop-blur-md z-50 cursor-pointer fade-in-fast">
       <div className="h-full w-full p-4 md:p-8 lg:p-12">
         <Fade
           autoplay={false}
@@ -26,14 +26,14 @@ const modal = ({
           transitionDuration={300}
           prevArrow={
             <button className="group absolute left-4 top-1/2 -translate-y-1/2 z-50">
-              <div className="p-3 rounded-full bg-black/40 backdrop-blur-md group-hover:bg-black/60 transition">
+              <div className="p-3 rounded-full bg-2 backdrop-blur-md group-hover:bg-2/60 transition">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
-                  className="w-6 h-6 text-2"
+                  className="w-6 h-6 text-white"
                 >
                   <path
                     strokeLinecap="round"
@@ -46,14 +46,14 @@ const modal = ({
           }
           nextArrow={
             <button className="group absolute right-4 top-1/2 -translate-y-1/2 z-50">
-              <div className="p-3 rounded-full bg-black/40 backdrop-blur-md group-hover:bg-black/60 transition">
+              <div className="p-3 rounded-full bg-2 backdrop-blur-md group-hover:bg-2/60 transition">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
-                  className="w-6 h-6 text-2"
+                  className="w-6 h-6 text-white"
                 >
                   <path
                     strokeLinecap="round"
@@ -68,18 +68,19 @@ const modal = ({
           {dataModal.map((item, index) => (
             <div
               key={index}
-              className="h-[calc(100vh-2rem)] md:h-[calc(100vh-4rem)] lg:h-[calc(100vh-6rem)] flex items-center justify-center"
+              className="h-[calc(100vh-2rem)] md:h-[calc(100vh-4rem)] lg:h-[calc(100vh-6rem)] flex flex-col gap-4 items-center justify-center"
             >
               <div
                 className="w-full h-full bg-center bg-contain bg-no-repeat"
                 style={{ backgroundImage: `url(${item.image})` }}
               />
+              <div className="text-white/60">{item.title}</div>
             </div>
           ))}
         </Fade>
       </div>
       <button
-        className="absolute top-12 right-2 lg:right-6 hover:text-foreground cursor-pointer text-2 z-50"
+        className="absolute top-12 right-2 lg:right-6 hover:text-2/60 cursor-pointer text-2 z-50"
         onClick={() => setDataModal(null)}
       >
         <svg

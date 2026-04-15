@@ -70,9 +70,8 @@ const Page = () => {
       subsection={lang === "es" ? "Mi mundo" : "My world"}
     >
       <Bullets data={filteredItems} goTo={goTo} image={image} />
-
-      <div className="pt-8 lg:pt-16 mb-12 max-w-3xl">
-        <h2 className="font-display text-lg lg:text-xl mb-4 text-primary">
+      <div className="w-full pt-8 mb-12 flex justify-end">
+        <h2 className="font-display text-lg lg:text-2xl mb-4 text-foreground text-right max-w-3xl ">
           {lang === "es"
             ? `Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos, dibujos, historias... 
             La expresión de mi existencia puesta en palabras.`

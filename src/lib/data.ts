@@ -47,7 +47,6 @@ export const nav = [
     name_en: "Audiovisual",
     href: "/audiovisual",
     color: "rgb(206, 24, 30)",
-
     submenu: [
       {
         name: "Videos",
@@ -68,8 +67,8 @@ export const nav = [
     color: "rgb(0, 167, 157)",
     submenu: [
       {
-        name: "Poesía",
-        name_en: "Poetry",
+        name: "Verso",
+        name_en: "Verse",
         href: "/escritos/poesia",
       },
       {

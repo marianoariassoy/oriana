@@ -65,14 +65,14 @@ const sectionLayout = ({
           "--color": data.color,
         } as React.CSSProperties
       }
-      className="text-[var(--color)] px-4 lg:px-8 max-w-1480px mx-auto pb-8"
+      className="text-[var(--color)] px-4 lg:px-8 max-w-1480px mx-auto pb-6"
     >
-      <header className="sticky top-0 w-full lg:h-30 pb-6 lg:pb-0 border-b border-[var(--color)] bg-secondary lg:bg-secondary/70 backdrop-blur-lg pt-9 lg:pt-12 z-40">
+      <header className="sticky top-0 w-full lg:h-28 pb-4 lg:pb-0 border-b border-[var(--color)] bg-secondary lg:bg-secondary/70 backdrop-blur-lg pt-9 lg:pt-12 z-40">
         <div className="font-display text-3xl mb-6 text-foreground lg:hidden">
           Oriana Favaro
         </div>
         <div
-          className={`text-xl lg:text-4xl font-display flex items-center gap-x-2 text-foreground/60 transition-all duration-300 ease-in-out leading-snug ${
+          className={`text-xl lg:text-3xl font-display flex items-center gap-x-2 text-foreground/60 transition-all duration-300 ease-in-out leading-snug ${
             mounted ? "translate-x-0" : "-translate-x-full"
           }`}
         >

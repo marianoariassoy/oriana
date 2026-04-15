@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Layout from "@/components/sectionlayout";
 import Card from "@/components/card-audiovisual";
-import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
 import Creditos from "./creditos";
 import { useLanguage } from "@/context/LanguageContext";
@@ -45,8 +44,6 @@ const page = () => {
 
   return (
     <Layout section="oriana" subsection={lang === "es" ? "Fotos" : "Photos"}>
-      <Bullets data={data} goTo={goTo} image={image} />
-
       {loading ? (
         <Loader />
       ) : (

@@ -16,6 +16,7 @@ interface data {
   id: number;
   title: string;
   image: string;
+  video: string;
   images: images[];
 }
 
@@ -24,7 +25,7 @@ const page = () => {
   const [dataModal, setDataModal] = useState(null);
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/opera-y-mas/" + lang;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/popular/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -57,6 +58,7 @@ const page = () => {
                 key={index}
                 title={item.title}
                 image={item.image}
+                video={item.video}
                 images={item.images}
                 setDataModal={setDataModal}
               />

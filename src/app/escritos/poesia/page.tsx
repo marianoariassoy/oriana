@@ -6,22 +6,16 @@ import Escritos from "@/components/escritos";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
-  category: number;
-  title: string;
-  items: item[];
-}
-
-interface item {
+  id: number;
   title: string;
   text: string;
-  category: number;
 }
 
 const page = () => {
   const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/escritos/poesia/" + lang;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/escritos/verso/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -39,14 +33,11 @@ const page = () => {
     getData();
   }, []);
 
+  console.log(data);
+
   return (
-    <Layout section="escritos" subsection={lang === "es" ? "Poesía" : "Poetry"}>
-      {loading ? (
-        <Loader />
-      ) : data[0].items.length > 0 ? (
-        <Escritos data={data} />
-      ) : // <div>Poesía</div>
-      null}
+    <Layout section="escritos" subsection={lang === "es" ? "Verso" : "Verse"}>
+      {loading ? <Loader /> : data.length > 0 ? <Escritos data={data} /> : null}
     </Layout>
   );
 };

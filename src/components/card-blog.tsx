@@ -50,10 +50,11 @@ const CardBlog = ({
             </div>
           )}
         </div>
-        <div>
-          <p className="text-foreground italic leading-snug lg:text-lg">
-            {description}
-          </p>
+        <div className="text-foreground leading-snug lg:text-lg">
+          <div
+            className="prose prose-neutral max-w-none"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
       </div>
     </article>

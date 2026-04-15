@@ -38,7 +38,7 @@ const page = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-8 lg:py-16 w-full mx-auto max-w-3xl fade-in flex flex-col gap-y-4">
+          <div className="py-8 lg:py-16 w-full max-w-3xl fade-in flex flex-col gap-y-4">
             {data.map((item, index) => (
               <article key={index} className="flex flex-col">
                 <h3 className="text-xl text-foreground">{item.title}</h3>

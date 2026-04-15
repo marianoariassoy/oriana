@@ -6,17 +6,10 @@ import Escritos from "@/components/escritos";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface data {
-  category: number;
-  title: string;
-  items: item[];
-}
-
-interface item {
+  id: number;
   title: string;
   text: string;
-  category: number;
 }
-
 const page = () => {
   const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
@@ -44,11 +37,7 @@ const page = () => {
       section="escritos"
       subsection={lang === "es" ? "Cuentos" : "Stories"}
     >
-      {loading ? (
-        <Loader />
-      ) : data[0].items.length > 0 ? (
-        <Escritos data={data} />
-      ) : null}
+      {loading ? <Loader /> : data.length > 0 ? <Escritos data={data} /> : null}
     </Layout>
   );
 };

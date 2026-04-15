@@ -15,6 +15,7 @@ interface data {
   id: number;
   title: string;
   image: string;
+  video: string;
   images: images[];
 }
 
@@ -44,7 +45,6 @@ const page = () => {
   return (
     <>
       <section className="py-8 lg:py-16 flex flex-col gap-y-8">
-        <h2 className="lg:text-xl">{lang === "es" ? "Fotos" : "Photos"}</h2>
         <div>
           {loading ? (
             <Loader />
@@ -55,6 +55,7 @@ const page = () => {
                   key={index}
                   title={item.title}
                   image={item.image}
+                  video={item.video}
                   images={item.images}
                   setDataModal={setDataModal}
                 />
@@ -62,7 +63,6 @@ const page = () => {
             </div>
           )}
         </div>
-        <h2 className="lg:text-xl">{lang === "es" ? "Videos" : "Videos"}</h2>
       </section>
 
       {dataModal ? (
