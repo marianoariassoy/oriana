@@ -1,3 +1,5 @@
+import ReactPlayer from "react-player";
+
 interface Card {
   title: string;
   text: string;
