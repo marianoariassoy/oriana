@@ -9,6 +9,7 @@ import { useLanguage } from "@/context/LanguageContext";
 interface data {
   id: number;
   title: string;
+  text: string;
   video: string;
 }
 
@@ -55,6 +56,7 @@ const page = () => {
               key={index}
               title={item.title}
               video={item.video}
+              text={item.text}
               index={index}
             />
           ))}

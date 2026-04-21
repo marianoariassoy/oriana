@@ -2,19 +2,29 @@
 import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
+import Escritos from "@/components/escritos";
 import { useLanguage } from "@/context/LanguageContext";
-import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import Back from "@/components/back";
 
 interface data {
   id: number;
   title: string;
   text: string;
+  url: string;
+  image: string;
+  audio: string;
 }
+
 const page = () => {
   const { lang } = useLanguage();
-  const [data, setData] = useState<data[]>([]);
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
+  const [data, setData] = useState<data>();
   const [loading, setLoading] = useState(true);
-  const apiURL = process.env.NEXT_PUBLIC_API_URL + "/escritos/cuentos/" + lang;
+  const apiURL =
+    process.env.NEXT_PUBLIC_API_URL + "/escritos/" + id + "/" + lang;
 
   useEffect(() => {
     async function getData() {
@@ -32,31 +42,28 @@ const page = () => {
     getData();
   }, []);
 
+  if (!id) return null;
+  if (!data) return null;
+
   return (
     <Layout
       section="escritos"
-      subsection={lang === "es" ? "Cuentos" : "Stories"}
+      subsection={lang === "es" ? "Ensayos" : "Essays"}
     >
-      <div className="py-8">
-        {loading ? (
-          <Loader />
-        ) : (
-          <ul className="lg:space-y-2 text-foreground/60 font-display text-xl lg:text-2xl list-disc ml-6">
-            {data.map((item) => {
-              return (
-                <li key={item.title}>
-                  <Link
-                    href={"./cuentos/view?id=" + item.id}
-                    className={` hover:text-4`}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Escritos
+            title={data.title}
+            text={data.text}
+            url={data.url}
+            audio={data.audio}
+            image={data.image}
+          />
+          <Back url="/escritos/ensayos" />
+        </>
+      )}
     </Layout>
   );
 };

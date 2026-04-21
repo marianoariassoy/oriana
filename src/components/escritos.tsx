@@ -1,55 +1,50 @@
 "use client";
-import { useState } from "react";
 
-interface item {
-  id: number;
+const page = ({
+  title,
+  text,
+  url,
+  image,
+  audio,
+}: {
   title: string;
   text: string;
-}
-
-const page = ({ data }: { data: item[] }) => {
-  const [activeItem, setActiveItem] = useState({
-    id: data[0].id,
-    title: data[0].title,
-    text: data[0].text,
-  });
+  url: string;
+  image: string;
+  audio: string;
+}) => {
+  const audioHtml = audio?.replace(/\\"/g, '"');
 
   return (
-    <div className="py-8 flex flex-col lg:flex-row gap-4">
-      <div className="lg:w-1/3">
-        <aside className="flex flex-col items-start">
-          <ul className="lg:space-y-2 text-foreground/60 font-display  mb-2">
-            {data.map((item, index) => {
-              const isActive = activeItem.id === item.id;
-
-              return (
-                <li key={item.title}>
-                  <button
-                    onClick={() => {
-                      setActiveItem(item);
-                    }}
-                    className={`cursor-pointer ${
-                      isActive ? "text-4" : " hover:text-4"
-                    }`}
-                  >
-                    {item.title}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </aside>
-      </div>
-      <div className="lg:w-2/3">
-        <h1 className="text-2xl lg:text-4xl font-display font-bold mb-4 lg:mb-6">
-          {activeItem.title}
-        </h1>
-        <div className="lg:text-lg font-display text-foreground leading-relaxed">
+    <div className="py-8 flex flex-col lg:flex-row gap-y-4 gap-x-20">
+      <div className="flex flex-col gap-y-6 ">
+        <h1 className="text-xl lg:text-3xl font-display font-bold">{title}</h1>
+        <div className="lg:text-lg font-display text-foreground leading-relaxed mb-4">
           <div
-            className="prose prose-neutral max-w-3xl"
-            dangerouslySetInnerHTML={{ __html: activeItem.text }}
+            className="prose prose-neutral max-w-5xl"
+            dangerouslySetInnerHTML={{ __html: text }}
           />
         </div>
+
+        {audioHtml && <div dangerouslySetInnerHTML={{ __html: audioHtml }} />}
+
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            className="w-full max-w-3xl h-auto object-cover"
+          />
+        )}
+
+        {url && (
+          <a
+            href={url}
+            target="_blank"
+            className="border border-4 h-12 w-full lg:w-50 flex items-center justify-center hover:text-white hover:bg-2 hover:border-2 font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg"
+          >
+            Link
+          </a>
+        )}
       </div>
     </div>
   );

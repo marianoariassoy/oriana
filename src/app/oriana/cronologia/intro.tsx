@@ -35,20 +35,10 @@ const intro = ({ lang }: { lang: string }) => {
     <section className="flex flex-col gap-y-8">
       <div>
         <h2 className="text-lg lg:text-xl">
-          {lang === "es" ? "Formación académica" : "Academic training"}
+          {lang === "es" ? "Cronología" : "Chronology"}
         </h2>
         <p className="font-display text-foreground leading-snug text-sm lg:text-base whitespace-break-spaces">
           {data[5].text}
-        </p>
-      </div>
-      <div>
-        <h2 className="text-lg lg:text-xl">
-          {lang === "es"
-            ? "Formación en Artes Plásticas"
-            : "Training in Arts and Crafts"}
-        </h2>
-        <p className="font-display text-foreground leading-snug text-sm lg:text-base whitespace-break-spaces">
-          {data[6].text}
         </p>
       </div>
     </section>

@@ -2,11 +2,12 @@ import ReactPlayer from "react-player";
 
 interface Card {
   title: string;
+  text: string;
   video: string;
   index: number;
 }
 
-const CardVideo = ({ title, video, index }: Card) => {
+const CardVideo = ({ title, text, video, index }: Card) => {
   return (
     <article className="flex flex-col gap-y-4" id={`image-${index + 1}`}>
       <div className="aspect-square lg:aspect-video overflow-hidden">
@@ -18,7 +19,12 @@ const CardVideo = ({ title, video, index }: Card) => {
           }}
         />
       </div>
-      <div>{title}</div>
+      <div>
+        <h2>{title}</h2>
+        {text && (
+          <p className="text-foreground whitespace-break-spaces">{text} </p>
+        )}
+      </div>
     </article>
   );
 };

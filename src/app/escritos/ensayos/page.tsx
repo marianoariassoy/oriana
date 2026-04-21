@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
-import Escritos from "@/components/escritos";
 import { useLanguage } from "@/context/LanguageContext";
+import Link from "next/link";
 
 interface data {
   id: number;
@@ -38,7 +38,26 @@ const page = () => {
       section="escritos"
       subsection={lang === "es" ? "Ensayos" : "Essays"}
     >
-      {loading ? <Loader /> : data.length > 0 ? <Escritos data={data} /> : null}
+      <div className="py-8">
+        {loading ? (
+          <Loader />
+        ) : (
+          <ul className="lg:space-y-2 text-foreground/60 font-display text-xl lg:text-2xl list-disc ml-6">
+            {data.map((item, index) => {
+              return (
+                <li key={item.title} className=" ">
+                  <Link
+                    href={"./ensayos/view?id=" + item.id}
+                    className={` hover:text-4`}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
     </Layout>
   );
 };
