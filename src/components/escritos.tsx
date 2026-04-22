@@ -1,4 +1,5 @@
 "use client";
+import ReactPlayer from "react-player";
 
 const page = ({
   title,
@@ -6,19 +7,34 @@ const page = ({
   url,
   image,
   audio,
+  video,
 }: {
   title: string;
   text: string;
   url: string;
   image: string;
   audio: string;
+  video: string;
 }) => {
   const audioHtml = audio?.replace(/\\"/g, '"');
 
   return (
-    <div className="py-8 flex flex-col lg:flex-row gap-y-4 gap-x-20">
+    <div className="py-8 flex flex-col lg:flex-row gap-y-4 gap-x-20 max-w-5xl">
       <div className="flex flex-col gap-y-6 ">
         <h1 className="text-xl lg:text-3xl font-display font-bold">{title}</h1>
+        {video && (
+          <div className="aspect-video">
+            <ReactPlayer
+              src={video}
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </div>
+        )}
+        {image && <img src={image} alt={title} className="w-full" />}
+
         <div className="lg:text-lg font-display text-foreground leading-relaxed mb-4">
           <div
             className="prose prose-neutral max-w-5xl"
@@ -27,14 +43,6 @@ const page = ({
         </div>
 
         {audioHtml && <div dangerouslySetInnerHTML={{ __html: audioHtml }} />}
-
-        {image && (
-          <img
-            src={image}
-            alt={title}
-            className="w-full max-w-3xl h-auto object-cover"
-          />
-        )}
 
         {url && (
           <a
