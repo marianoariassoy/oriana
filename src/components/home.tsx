@@ -161,7 +161,7 @@ const home = ({ section }: { section: string }) => {
               </div>
 
               <a
-                href="mailto:#"
+                href="mailto:me@orianafavaro.com"
                 className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg"
               >
                 {lang === "es" ? "Envíame tu consulta" : "Send me your query"}
