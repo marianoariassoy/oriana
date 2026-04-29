@@ -27,9 +27,10 @@ const creditos = ({ lang }: { lang: string }) => {
     }
     getData();
   }, []);
+
   return (
     <div className="text-foreground/60 font-display whitespace-break-spaces">
-      {loading ? "" : data[7].text}
+      {loading ? "" : data[6].text}
     </div>
   );
 };
