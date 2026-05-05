@@ -22,7 +22,7 @@ const CardBlog = ({
 }: Card) => {
   return (
     <article
-      className="font-display pb-12 border-b border-1 flex flex-col gap-8"
+      className="font-display pb-20 border-b border-1 flex flex-col gap-8"
       id={`video-${index + 1}`}
     >
       <header>
@@ -31,7 +31,7 @@ const CardBlog = ({
         </h3>
         <h2 className="font-bold text-xl lg:text-4xl">{title}</h2>
       </header>
-      <div className="gap-8 grid grid-cols-1 lg:grid-cols-2 ">
+      <div className="gap-8 flex flex-col">
         <div>
           {image && (
             <div className="aspect-video w-full">

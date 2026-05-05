@@ -42,7 +42,7 @@ const menu = ({
                   "--hover-color": item.color,
                 } as React.CSSProperties
               }
-              className={` border-b lg:leading-20 hover:text-[var(--hover-color)] hover:border-[var(--hover-color)] ${
+              className={`border-b lg:leading-20 hover:text-[var(--hover-color)] hover:border-[var(--hover-color)] ${
                 paddins[index]
               } hover:italic w-full
               ${

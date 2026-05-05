@@ -6,6 +6,7 @@ import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
 import Aside from "./aside";
 import { useLanguage } from "@/context/LanguageContext";
+import Presentacion from "./presentacion";
 
 interface Item {
   id: number;
@@ -70,46 +71,41 @@ const Page = () => {
       subsection={lang === "es" ? "Mi mundo" : "My world"}
     >
       <Bullets data={filteredItems} goTo={goTo} image={image} />
-      <div className="w-full pt-8 mb-12 flex justify-end">
-        <h2 className="font-display text-lg lg:text-2xl mb-4 text-foreground text-right max-w-3xl ">
-          {lang === "es"
-            ? `Reflexiones, ideas, pensamientos, teorías, confesiones, proyectos, dibujos, historias... 
-            La expresión de mi existencia puesta en palabras.`
-            : `Expressions, ideas, thoughts, theories, confessions, projects, drawings, stories... 
-            The expression of my existence put into words.`}
-        </h2>
-      </div>
-      <div className="pb-8 lg:pb-16 w-full flex flex-col gap-8 fade-in max-w-7xl">
-        {loading ? (
-          <Loader />
-        ) : (
-          filteredItems.map((item, index) => (
-            <CardBlog
-              key={item.id}
-              title={item.title}
-              date={item.date}
-              description={item.text}
-              image={item.image}
-              video={item.video}
-              index={index}
+      <Presentacion lang={lang} />
+
+      <div className="pb-8 lg:pb-16 w-full flex flex-col lg:flex-row justify-between gap-8 fade-in">
+        <div className="w-full max-w-4xl">
+          {loading ? (
+            <Loader />
+          ) : (
+            filteredItems.map((item, index) => (
+              <CardBlog
+                key={item.id}
+                title={item.title}
+                date={item.date}
+                description={item.text}
+                image={item.image}
+                video={item.video}
+                index={index}
+                lang={lang}
+              />
+            ))
+          )}
+        </div>
+        <div>
+          {!loading && (
+            <Aside
+              items={data}
+              selectedYear={year}
+              selectedMonth={month}
               lang={lang}
+              onSelect={(y, m) => {
+                setYear(y);
+                setMonth(m);
+              }}
             />
-          ))
-        )}
-      </div>
-      <div className="pb-12">
-        {!loading && (
-          <Aside
-            items={data}
-            selectedYear={year}
-            selectedMonth={month}
-            lang={lang}
-            onSelect={(y, m) => {
-              setYear(y);
-              setMonth(m);
-            }}
-          />
-        )}
+          )}
+        </div>
       </div>
     </Layout>
   );

@@ -67,7 +67,7 @@ const page = () => {
             <img src={data.image} alt={data.title} className="w-full" />
           </div>
           <div className="pr-8">
-            <p className="italic font-display leading-snug text-foreground/60 whitespace-break-spaces text-sm lg:text-base">
+            <p className="italic font-display leading-snug text-foreground   whitespace-break-spaces text-sm lg:text-lg">
               {data.text}
             </p>
           </div>

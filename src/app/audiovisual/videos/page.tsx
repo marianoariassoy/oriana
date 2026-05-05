@@ -43,6 +43,8 @@ const page = () => {
     image.scrollIntoView({ behavior: "smooth" });
   };
 
+  const sortedData = [...data].sort((a, b) => a.title.localeCompare(b.title));
+
   return (
     <Layout section="audiovisual" subsection="Videos">
       <Bullets data={data} goTo={goTo} image={image} />
@@ -50,16 +52,37 @@ const page = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="flex flex-col py-16 gap-y-12 w-full mx-auto max-w-3xl fade-in">
-          {data.map((item, index) => (
-            <CardVideo
-              key={index}
-              title={item.title}
-              video={item.video}
-              text={item.text}
-              index={index}
-            />
-          ))}
+        <div className="pb-8 lg:pb-16 w-full flex flex-col lg:flex-row justify-between gap-8 fade-in">
+          <div className="flex flex-col py-16 gap-y-12 w-full max-w-4xl ">
+            {data.map((item, index) => (
+              <CardVideo
+                key={item.id}
+                title={item.title}
+                video={item.video}
+                text={item.text}
+                index={index}
+              />
+            ))}
+          </div>
+          <div>
+            <ul className="flex flex-col gap-2 mt-12">
+              {sortedData.map((item, index) => (
+                <li key={item.id}>
+                  <button
+                    className="text-foreground hover:underline cursor-pointer"
+                    onClick={() => {
+                      const originalIndex = data.findIndex(
+                        (d) => d.id === item.id,
+                      );
+                      goTo(originalIndex + 1);
+                    }}
+                  >
+                    {item.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </Layout>

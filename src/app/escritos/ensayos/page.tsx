@@ -42,13 +42,13 @@ const page = () => {
         {loading ? (
           <Loader />
         ) : (
-          <ul className="lg:space-y-2 text-foreground/60 font-display text-xl lg:text-2xl list-disc ml-6">
+          <ul className="lg:space-y-2 font-display font-light text-xl lg:text-4xl text-center mt-8">
             {data.map((item, index) => {
               return (
                 <li key={item.title} className=" ">
                   <Link
                     href={"./ensayos/view?id=" + item.id}
-                    className={` hover:text-4`}
+                    className={` hover:underline`}
                   >
                     {item.title}
                   </Link>
