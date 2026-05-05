@@ -1,5 +1,6 @@
 "use client";
 import ReactPlayer from "react-player";
+import { useState } from "react";
 
 const page = ({
   title,
@@ -17,9 +18,10 @@ const page = ({
   video: string;
 }) => {
   const audioHtml = audio?.replace(/\\"/g, '"');
+  const [isVertical, setIsVertical] = useState(false);
 
   return (
-    <div className="py-8 flex flex-col lg:flex-row gap-y-4 gap-x-20 max-w-5xl">
+    <div className="py-8 flex flex-col lg:flex-row gap-y-4 gap-x-20 max-w-4xl mx-auto">
       <div className="flex flex-col gap-y-6 ">
         <h1 className="text-xl lg:text-3xl font-display font-bold">{title}</h1>
         {video && (
@@ -33,7 +35,21 @@ const page = ({
             />
           </div>
         )}
-        {image && <img src={image} alt={title} className="w-full" />}
+        {image && (
+          <div className="flex justify-center">
+            <img
+              src={image}
+              alt={title}
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                setIsVertical(img.naturalHeight > img.naturalWidth);
+              }}
+              className={
+                isVertical ? "w-[60%] object-contain" : "w-full object-cover"
+              }
+            />
+          </div>
+        )}
 
         <div className="lg:text-lg font-display text-foreground leading-relaxed mb-4">
           <div
