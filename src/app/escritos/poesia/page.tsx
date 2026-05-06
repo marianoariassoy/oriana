@@ -36,19 +36,30 @@ const page = () => {
     getData();
   }, []);
 
+  const paddins = [
+    "pl-2 lg:pl-10",
+    "pl-16 lg:pl-45",
+    "pl-2 lg:pl-10",
+    "pl-30 lg:pl-80",
+    "pl-16 lg:pl-45",
+  ];
+
   return (
     <Layout section="escritos" subsection={lang === "es" ? "Verso" : "Verse"}>
       <div className="py-8">
         {loading ? (
           <Loader />
         ) : (
-          <ul className="lg:space-y-2 font-display font-light text-xl lg:text-4xl text-center mt-8">
+          <ul className="lg:space-y-2 font-display font-light text-xl lg:text-4xl text-center mt-8 max-w-2xl mx-auto">
             {data.map((item, index) => {
               return (
-                <li key={item.title} className=" ">
+                <li
+                  key={item.title}
+                  className="border-transparent hover:border-4 border-b w-full"
+                >
                   <Link
                     href={"./poesia/view?id=" + item.id}
-                    className={` hover:underline`}
+                    className={`${paddins[index]}`}
                   >
                     {item.title}
                   </Link>
