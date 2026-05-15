@@ -1,10 +1,9 @@
 "use client";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/sectionlayout";
 import CardBlog from "@/components/card-blog";
-import Bullets from "@/components/bullets";
 import Loader from "@/components/loading";
-import Aside from "./aside";
+import Aside from "./aside-title";
 import { useLanguage } from "@/context/LanguageContext";
 import Presentacion from "./presentacion";
 
@@ -19,17 +18,8 @@ interface Item {
   video: string;
 }
 
-const getRange = (year: number, month: number) => {
-  const start = new Date(year, month - 1, 1, 0, 0, 0).getTime() / 1000;
-  const end = new Date(year, month, 0, 23, 59, 59).getTime() / 1000;
-  return { start, end };
-};
-
 const Page = () => {
   const { lang } = useLanguage();
-  const [year, setYear] = useState<number>();
-  const [month, setMonth] = useState<number>();
-  const [image, setImage] = useState(1);
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const apiURL = process.env.NEXT_PUBLIC_API_URL + "/mi-mundo/" + lang;
@@ -50,17 +40,9 @@ const Page = () => {
     getData();
   }, []);
 
-  const filteredItems = useMemo(() => {
-    if (!year || !month) return data;
-
-    const { start, end } = getRange(year, month);
-
-    return data.filter((item) => item.date >= start && item.date <= end);
-  }, [data, year, month]);
-
   const goTo = (id: number) => {
-    setImage(id);
     const image = document.querySelector(`#video-${id}`);
+    console.log(id);
     if (!image) return;
     image.scrollIntoView({ behavior: "smooth" });
   };
@@ -70,7 +52,6 @@ const Page = () => {
       section="oriana"
       subsection={lang === "es" ? "Mi mundo" : "My world"}
     >
-      <Bullets data={filteredItems} goTo={goTo} image={image} />
       <Presentacion lang={lang} />
 
       <div className="pb-8 lg:pb-16 w-full flex flex-col lg:flex-row justify-between gap-8 fade-in">
@@ -78,7 +59,7 @@ const Page = () => {
           {loading ? (
             <Loader />
           ) : (
-            filteredItems.map((item, index) => (
+            data.map((item) => (
               <CardBlog
                 key={item.id}
                 title={item.title}
@@ -86,25 +67,14 @@ const Page = () => {
                 description={item.text}
                 image={item.image}
                 video={item.video}
-                index={index}
+                id={item.id}
                 lang={lang}
               />
             ))
           )}
         </div>
-        <div>
-          {!loading && (
-            <Aside
-              items={data}
-              selectedYear={year}
-              selectedMonth={month}
-              lang={lang}
-              onSelect={(y, m) => {
-                setYear(y);
-                setMonth(m);
-              }}
-            />
-          )}
+        <div className="shrink-0">
+          {!loading && <Aside items={data} goTo={goTo} />}
         </div>
       </div>
     </Layout>

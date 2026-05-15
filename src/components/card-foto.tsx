@@ -6,7 +6,10 @@ interface Card {
 
 const CardFoto = ({ title, image, index }: Card) => {
   return (
-    <article className="flex flex-col gap-y-2" id={`image-${index + 1}`}>
+    <article
+      className="flex flex-col gap-y-2 text-center"
+      id={`image-${index + 1}`}
+    >
       <div>
         <img src={image} alt={title} className="w-full" />
       </div>

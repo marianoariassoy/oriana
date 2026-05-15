@@ -7,7 +7,7 @@ interface Card {
   description: string;
   image?: string;
   video?: string;
-  index: number;
+  id: number;
   lang: string;
 }
 
@@ -17,13 +17,13 @@ const CardBlog = ({
   description,
   image,
   video,
-  index,
+  id,
   lang,
 }: Card) => {
   return (
     <article
       className="font-display pb-20 border-b border-1 flex flex-col gap-8"
-      id={`video-${index + 1}`}
+      id={`video-${id}`}
     >
       <header>
         <h3 className="font-bold text-foreground lg:text-xl">

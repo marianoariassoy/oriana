@@ -21,20 +21,19 @@ const page = ({
   const [isVertical, setIsVertical] = useState(false);
 
   return (
-    <div className="py-8 flex flex-col lg:flex-row gap-y-4 gap-x-20 max-w-4xl mx-auto">
-      <div className="flex flex-col gap-y-6 ">
+    <div className="py-8 pt-12 flex flex-col lg:flex-row gap-y-4 gap-x-20 max-w-4xl mx-auto">
+      <div className="flex flex-col gap-y-8 text-center">
         <h1 className="text-xl lg:text-3xl font-display font-bold">{title}</h1>
-        {video && (
-          <div className="aspect-video">
-            <ReactPlayer
-              src={video}
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          </div>
-        )}
+
+        <div className="lg:text-lg font-display text-foreground leading-relaxed mb-8">
+          <div
+            className="prose prose-neutral max-w-5xl"
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
+        </div>
+
+        {audioHtml && <div dangerouslySetInnerHTML={{ __html: audioHtml }} />}
+
         {image && (
           <div className="flex justify-center">
             <img
@@ -51,14 +50,17 @@ const page = ({
           </div>
         )}
 
-        <div className="lg:text-lg font-display text-foreground leading-relaxed mb-4">
-          <div
-            className="prose prose-neutral max-w-5xl"
-            dangerouslySetInnerHTML={{ __html: text }}
-          />
-        </div>
-
-        {audioHtml && <div dangerouslySetInnerHTML={{ __html: audioHtml }} />}
+        {video && (
+          <div className="aspect-video">
+            <ReactPlayer
+              src={video}
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </div>
+        )}
 
         {url && (
           <a

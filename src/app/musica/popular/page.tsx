@@ -49,22 +49,52 @@ const page = () => {
         section="música"
         subsection={lang === "es" ? "Popular" : "Popular"}
       >
-        {loading ? (
-          <Loader />
-        ) : (
-          <div className="py-8 grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
-            {data.map((item, index) => (
-              <CardMusica
-                key={index}
-                title={item.title}
-                image={item.image}
-                video={item.video}
-                images={item.images}
-                setDataModal={setDataModal}
-              />
-            ))}
+        <section className="py-8 lg:py-16 flex flex-col gap-y-8">
+          <div>
+            <h1 className="text-xl mb-8">
+              {lang === "es" ? "Fotos" : "Images"}
+            </h1>
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
+                {data
+                  .filter((item) => item.image !== null)
+                  .map((item, index) => (
+                    <CardMusica
+                      key={index}
+                      title={item.title}
+                      image={item.image}
+                      video={item.video}
+                      images={item.images}
+                      setDataModal={setDataModal}
+                    />
+                  ))}
+              </div>
+            )}
           </div>
-        )}
+          <div>
+            <h1 className="text-xl mb-8">Videos</h1>
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
+                {data
+                  .filter((item) => item.image === null)
+                  .map((item, index) => (
+                    <CardMusica
+                      key={index}
+                      title={item.title}
+                      image={item.image}
+                      video={item.video}
+                      images={item.images}
+                      setDataModal={setDataModal}
+                    />
+                  ))}
+              </div>
+            )}
+          </div>
+        </section>
       </Layout>
 
       {dataModal ? (

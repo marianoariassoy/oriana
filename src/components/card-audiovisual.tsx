@@ -10,11 +10,11 @@ const Card1 = (props: Card) => {
   return (
     <article className="flex flex-col gap-y-2">
       <Link href={props.url}>
-        <div className="aspect-square lg:aspect-5/7">
+        <div className="aspect-square">
           <img
             src={props.image}
             alt={props.title}
-            className="w-full h-full object-cover object-center hover:opacity-80 trnasition-opacity duration-300"
+            className="w-full h-full object-contain object-center hover:opacity-80 trnasition-opacity duration-300"
           />
         </div>
       </Link>
