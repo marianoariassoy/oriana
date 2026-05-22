@@ -20,7 +20,7 @@ const modal = ({
       <div className="h-full w-full p-4 md:p-8 lg:p-12">
         <Fade
           autoplay={false}
-          infinite={true}
+          infinite={false}
           pauseOnHover={false}
           arrows={true}
           transitionDuration={300}

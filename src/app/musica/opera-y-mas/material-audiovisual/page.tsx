@@ -46,7 +46,9 @@ const page = () => {
     <>
       <section className="py-8 lg:py-16 flex flex-col gap-y-8">
         <div>
-          <h1 className="text-xl mb-8">{lang === "es" ? "Fotos" : "Images"}</h1>
+          <h1 className="text-2xl mb-8">
+            {lang === "es" ? "Fotos" : "Images"}
+          </h1>
           {loading ? (
             <Loader />
           ) : (
@@ -67,7 +69,7 @@ const page = () => {
           )}
         </div>
         <div>
-          <h1 className="text-xl mb-8">Videos</h1>
+          <h1 className="text-2xl mb-8">Videos</h1>
           {loading ? (
             <Loader />
           ) : (

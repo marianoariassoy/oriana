@@ -15,6 +15,7 @@ interface data {
   image: string;
   audio: string;
   video: string;
+  image_title: string;
 }
 
 const page = () => {
@@ -58,6 +59,7 @@ const page = () => {
             url={data.url}
             audio={data.audio}
             image={data.image}
+            image_title={data.image_title}
             video={data.video}
           />
           <Back url="/escritos/poesia" />

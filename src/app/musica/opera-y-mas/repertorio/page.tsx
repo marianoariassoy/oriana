@@ -36,11 +36,11 @@ const page = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-8 lg:py-16 w-full max-w-3xl fade-in ">
+          <div className="py-8 lg:py-16 w-full max-w-3xl fade-in grid grid-cols-1 lg:grid-cols-2 gap-8">
             {data.map((item, index) => (
               <div key={index}>
-                <h4 className="mb-4 text-xl">{item.title}</h4>
-                <p className="whitespace-break-spaces text-foreground text-lg">
+                <h4 className="mb-4 text-2xl">{item.title}</h4>
+                <p className="whitespace-break-spaces text-foreground text-lg leading-snug">
                   {item.text}
                 </p>
               </div>

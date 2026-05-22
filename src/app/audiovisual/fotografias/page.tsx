@@ -2,18 +2,28 @@
 import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
-import Card from "@/components/card-audiovisual";
 import { useLanguage } from "@/context/LanguageContext";
+import Modal from "@/components/modal";
+import CardMusica from "@/components/card-musica";
+
+interface images {
+  id: number;
+  title: string;
+  image: string;
+}
 
 interface data {
   id: number;
   title: string;
-  text: string;
   image: string;
+  images: images[];
 }
+
 const page = () => {
   const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
+  const [dataModal, setDataModal] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const apiURL = process.env.NEXT_PUBLIC_API_URL + "/fotos-audiovisual/" + lang;
 
@@ -34,25 +44,31 @@ const page = () => {
   }, []);
 
   return (
-    <Layout
-      section="audiovisual"
-      subsection={lang === "es" ? "Fotografías" : "Photos"}
-    >
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="lg:px-12 py-16 grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-y-12 fade-in">
-          {data.map((item, index) => (
-            <Card
-              key={index}
-              url={"/audiovisual/fotografias/view?id=" + item.id}
-              title={item.title}
-              image={item.image}
-            />
-          ))}
-        </div>
-      )}
-    </Layout>
+    <>
+      <Layout
+        section="audiovisual"
+        subsection={lang === "es" ? "Fotografías" : "Photos"}
+      >
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="py-16 grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
+            {data.map((item, index) => (
+              <CardMusica
+                key={index}
+                title={item.title}
+                image={item.image}
+                images={item.images}
+                setDataModal={setDataModal}
+              />
+            ))}
+          </div>
+        )}
+      </Layout>
+      {dataModal ? (
+        <Modal dataModal={dataModal} setDataModal={setDataModal} />
+      ) : null}
+    </>
   );
 };
 

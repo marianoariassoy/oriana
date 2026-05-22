@@ -74,7 +74,7 @@ const Page = () => {
           )}
         </div>
         <div className="shrink-0">
-          {!loading && <Aside items={data} goTo={goTo} />}
+          {!loading && <Aside items={data} goTo={goTo} lang={lang} />}
         </div>
       </div>
     </Layout>

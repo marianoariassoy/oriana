@@ -14,7 +14,7 @@ const Card1 = (props: Card) => {
           <img
             src={props.image}
             alt={props.title}
-            className="w-full h-full object-contain object-center hover:opacity-80 trnasition-opacity duration-300"
+            className="w-full h-full object-contain object-top hover:opacity-80 trnasition-opacity duration-300"
           />
         </div>
       </Link>

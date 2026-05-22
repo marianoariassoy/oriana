@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { formatDateFromTimestamp } from "@/utils/date";
 
 interface Item {
   id: number;
@@ -14,9 +15,10 @@ interface Item {
 interface AsideArchiveProps {
   items: Item[];
   goTo: (id: number) => void;
+  lang: string;
 }
 
-export function AsideArchive({ items, goTo }: AsideArchiveProps) {
+export function AsideArchive({ items, goTo, lang }: AsideArchiveProps) {
   const [itemsOrdered, setItemsOrdered] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -28,10 +30,13 @@ export function AsideArchive({ items, goTo }: AsideArchiveProps) {
       {itemsOrdered.map((item) => (
         <div key={item.id} className="archive-year">
           <button
-            className="hover:underline cursor-pointer"
+            className=" cursor-pointer flex flex-col  items-start"
             onClick={() => goTo(item.id)}
           >
-            <span className="text-xl">{item.title}</span>
+            <span className="text-foreground/70">
+              {formatDateFromTimestamp(item.date, lang)}
+            </span>
+            <span className="text-xl hover:underline">{item.title}</span>
           </button>
         </div>
       ))}

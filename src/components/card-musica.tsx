@@ -3,14 +3,14 @@ import ReactPlayer from "react-player";
 interface Card {
   title: string;
   image: string;
-  video: string;
+  video?: string;
   images: any;
   setDataModal: any;
 }
 
 const CardMusica = ({ title, image, video, images, setDataModal }: Card) => {
   return (
-    <article className="flex flex-col gap-y-2">
+    <article className="flex flex-col gap-y-2 hover:opacity-70 transition-all">
       {video ? (
         <div className="aspect-square lg:aspect-5/4 bg-black/10">
           <ReactPlayer
@@ -24,17 +24,19 @@ const CardMusica = ({ title, image, video, images, setDataModal }: Card) => {
       ) : (
         <button
           className="w-full cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={() => setDataModal(images)}
+          onClick={images.length > 0 ? () => setDataModal(images) : () => {}}
         >
           <img
             src={image}
             alt={title}
-            className="aspect-square lg:aspect-5/4 w-full h-full object-cover"
+            className="aspect-square lg:aspect-5/4 w-full h-full object-cover "
           />
         </button>
       )}
 
-      <div className="font-display text-foreground font-medium">{title}</div>
+      <div className="font-display text-foreground font-medium text-center">
+        {title}
+      </div>
     </article>
   );
 };

@@ -38,18 +38,18 @@ const page = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="py-8 lg:py-16 w-full max-w-3xl fade-in flex flex-col gap-y-4">
+          <div className="py-8 lg:py-16 w-full max-w-3xl fade-in flex flex-col gap-y-12">
             {data.map((item, index) => (
               <article key={index} className="flex flex-col">
                 <h3 className="text-xl text-foreground">{item.title}</h3>
-                <p className="text-foreground/60 leading-snug text-sm lg:text-base whitespace-break-spaces font-display">
+                <p className="text-foreground/70 leading-snug lg:text-base whitespace-break-spaces font-display">
                   {item.text}
                 </p>
                 <a
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:underline mt-2 italic font-display"
+                  className="hover:underline italic font-display"
                 >
                   {item.url}
                 </a>

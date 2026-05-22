@@ -9,6 +9,7 @@ const page = ({
   image,
   audio,
   video,
+  image_title,
 }: {
   title: string;
   text: string;
@@ -16,6 +17,7 @@ const page = ({
   image: string;
   audio: string;
   video: string;
+  image_title: string;
 }) => {
   const audioHtml = audio?.replace(/\\"/g, '"');
   const [isVertical, setIsVertical] = useState(false);
@@ -35,7 +37,7 @@ const page = ({
         {audioHtml && <div dangerouslySetInnerHTML={{ __html: audioHtml }} />}
 
         {image && (
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center flex-col gap-4">
             <img
               src={image}
               alt={title}
@@ -47,6 +49,11 @@ const page = ({
                 isVertical ? "w-[60%] object-contain" : "w-full object-cover"
               }
             />
+            {image_title && (
+              <div className="text-foreground text-center font-display ">
+                {image_title}
+              </div>
+            )}
           </div>
         )}
 
