@@ -2,6 +2,7 @@ import { nav } from "@/lib/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
+import LanguageSwitcher from "@/components/languageswitcher";
 
 const menu = ({
   open,
@@ -28,6 +29,9 @@ const menu = ({
       }`}
       onClick={() => setOpen(false)}
     >
+      <div className="absolute top-0 left-0">
+        <LanguageSwitcher />
+      </div>
       <nav
         className={`fixed top-0 left-0 w-screen transition-transform duration-300 ease-in-out max-w-full h-full flex items-center justify-center font-display font-light px-4 ${
           open ? "translate-x-0" : "-translate-x-full"

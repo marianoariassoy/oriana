@@ -7,16 +7,16 @@ const categories = ({ lang }: { lang: string }) => {
 
   const data = [
     {
-      id: 1,
-      name: "Repertorio",
-      name_en: "Repertoire",
-      href: "/musica/opera-y-mas/repertorio",
-    },
-    {
       id: 2,
       name: "Material audiovisual",
       name_en: "Audiovisual material",
       href: "/musica/opera-y-mas/material-audiovisual",
+    },
+    {
+      id: 1,
+      name: "Repertorio",
+      name_en: "Repertoire",
+      href: "/musica/opera-y-mas/repertorio",
     },
     {
       id: 3,
