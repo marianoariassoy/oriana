@@ -4,21 +4,13 @@ import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
 import { useLanguage } from "@/context/LanguageContext";
 import Modal from "@/components/modal";
-import CardMusica from "@/components/card-musica";
-
-interface images {
-  id: number;
-  title: string;
-  image: string;
-}
+import Card from "@/components/card-audiovisual";
 
 interface data {
   id: number;
   title: string;
   image: string;
-  images: images[];
 }
-
 const page = () => {
   const { lang } = useLanguage();
   const [data, setData] = useState<data[]>([]);
@@ -54,12 +46,11 @@ const page = () => {
         ) : (
           <div className="py-16 grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-y-12">
             {data.map((item, index) => (
-              <CardMusica
+              <Card
                 key={index}
+                url={"/audiovisual/fotografias/view?id=" + item.id}
                 title={item.title}
                 image={item.image}
-                images={item.images}
-                setDataModal={setDataModal}
               />
             ))}
           </div>
