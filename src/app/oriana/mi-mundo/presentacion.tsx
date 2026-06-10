@@ -31,7 +31,7 @@ const presentacion = ({ lang }: { lang: string }) => {
 
   return (
     <div className="w-full pt-30 mb-12 flex justify-end">
-      <h2 className="font-display text-lg lg:text-2xl mb-18 text-foreground text-right max-w-3xl ">
+      <h2 className="font-display text-lg lg:text-2xl mb-14 text-foreground text-right max-w-5xl whitespace-break-spaces">
         {data[7]?.text}
       </h2>
     </div>

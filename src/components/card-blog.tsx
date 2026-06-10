@@ -22,7 +22,7 @@ const CardBlog = ({
 }: Card) => {
   return (
     <article
-      className="font-display pb-20 border-b border-1 flex flex-col gap-8"
+      className="font-display pb-20 border-b border-1 flex flex-col pt-8 gap-8"
       id={`video-${id}`}
     >
       <header>

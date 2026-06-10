@@ -55,7 +55,7 @@ const Page = () => {
       <Presentacion lang={lang} />
 
       <div className="pb-8 lg:pb-16 w-full flex flex-col lg:flex-row justify-between gap-8 fade-in">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-3xl">
           {loading ? (
             <Loader />
           ) : (

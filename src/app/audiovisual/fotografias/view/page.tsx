@@ -7,12 +7,19 @@ import Loader from "@/components/loading";
 import { useLanguage } from "@/context/LanguageContext";
 import Forward from "@/components/forward";
 
+interface images {
+  id: number;
+  title: string;
+  image: string;
+}
+
 interface data {
   id: number;
   title: string;
   text: string;
   image: string;
   next: string;
+  images: images[];
 }
 
 const page = () => {
@@ -26,6 +33,7 @@ const page = () => {
     text: "",
     image: "",
     next: "",
+    images: [],
   });
   const [loading, setLoading] = useState(true);
 
@@ -63,8 +71,18 @@ const page = () => {
         <Loader />
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-16 relative max-w-7xl">
-          <div className="pt-4 lg:pt-0">
+          <div className="pt-4 lg:pt-0 flex flex-col gap-4">
             <img src={data.image} alt={data.title} className="w-full" />
+
+            {data.images &&
+              data.images.map((item, index) => (
+                <img
+                  key={index}
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full"
+                />
+              ))}
           </div>
           <div className="pr-8">
             <p className="italic font-display leading-snug text-foreground   whitespace-break-spaces text-sm lg:text-lg">
