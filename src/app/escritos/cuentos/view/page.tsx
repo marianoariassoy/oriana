@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Loader from "@/components/loading";
 import Layout from "@/components/sectionlayout";
@@ -7,7 +8,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useSearchParams } from "next/navigation";
 import Back from "@/components/back";
 
-interface data {
+interface Data {
   id: number;
   title: string;
   text: string;
@@ -18,34 +19,41 @@ interface data {
   image_title: string;
 }
 
-const page = () => {
+const Page = () => {
   const { lang } = useLanguage();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
-  const [data, setData] = useState<data>();
+  const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(true);
-  const apiURL =
-    process.env.NEXT_PUBLIC_API_URL + "/escritos/" + id + "/" + lang;
 
   useEffect(() => {
+    if (!id) return;
+
     async function getData() {
       try {
-        const res = await fetch(apiURL);
-        if (!res.ok) throw new Error("Error al obtener datos de productos");
-        const data = await res.json();
-        setData(data);
+        setLoading(true);
+
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/escritos/${id}/${lang}`,
+        );
+
+        if (!res.ok) {
+          throw new Error("Error al obtener datos");
+        }
+
+        const json = await res.json();
+        setData(json);
       } catch (error) {
         console.error(error);
+        setData(null);
       } finally {
         setLoading(false);
       }
     }
-    getData();
-  }, []);
 
-  if (!id) return null;
-  if (!data) return null;
+    getData();
+  }, [id, lang]);
 
   return (
     <Layout
@@ -54,7 +62,7 @@ const page = () => {
     >
       {loading ? (
         <Loader />
-      ) : (
+      ) : data ? (
         <>
           <Escritos
             title={data.title}
@@ -67,9 +75,11 @@ const page = () => {
           />
           <Back url="/escritos/cuentos" />
         </>
+      ) : (
+        <p>No se encontraron datos.</p>
       )}
     </Layout>
   );
 };
 
-export default page;
+export default Page;

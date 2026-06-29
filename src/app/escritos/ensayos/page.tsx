@@ -58,7 +58,7 @@ const page = () => {
                   className="border-transparent hover:border-4 border-b w-full"
                 >
                   <Link
-                    href={"./ensayos/view?id=" + item.id}
+                    href={"/escritos/ensayos/view?id=" + item.id}
                     className={`${paddins[index]}`}
                   >
                     {item.title}
