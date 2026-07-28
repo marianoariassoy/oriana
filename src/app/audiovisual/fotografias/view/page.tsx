@@ -26,6 +26,9 @@ const page = () => {
   const { lang } = useLanguage();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const [orientation, setOrientation] = useState<
+    "horizontal" | "vertical" | "square"
+  >("horizontal");
 
   const [data, setData] = useState<data>({
     id: 0,
@@ -70,25 +73,53 @@ const page = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-16 relative max-w-7xl">
-          <div className="pt-4 lg:pt-0 flex flex-col gap-4">
-            <img src={data.image} alt={data.title} className="w-full" />
-
+        <div
+          className={`grid grid-cols-1  gap-8 py-16 relative max-w-7xl ${data.text ? "lg:grid-cols-2" : "justify-center items-center"}`}
+        >
+          <div className="pt-4 lg:pt-0 flex-col gap-4 flex items-center">
+            <img
+              src={data.image}
+              alt={data.title}
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                if (img.naturalWidth > img.naturalHeight) {
+                  setOrientation("horizontal");
+                } else if (img.naturalHeight > img.naturalWidth) {
+                  setOrientation("vertical");
+                } else {
+                  setOrientation("square");
+                }
+              }}
+              className={`w-full ${orientation === "horizontal" ? "max-w-5xl" : "max-w-3xl"}`}
+            />
             {data.images &&
               data.images.map((item, index) => (
                 <img
                   key={index}
                   src={item.image}
                   alt={item.title}
-                  className="w-full"
+                  onLoad={(e) => {
+                    const img = e.currentTarget;
+                    if (img.naturalWidth > img.naturalHeight) {
+                      setOrientation("horizontal");
+                    } else if (img.naturalHeight > img.naturalWidth) {
+                      setOrientation("vertical");
+                    } else {
+                      setOrientation("square");
+                    }
+                  }}
+                  className={`w-full ${orientation === "horizontal" ? "max-w-5xl" : "max-w-3xl"}`}
                 />
               ))}
           </div>
-          <div className="pr-8">
-            <p className="italic font-display leading-snug text-foreground   whitespace-break-spaces text-sm lg:text-lg">
-              {data.text}
-            </p>
-          </div>
+          {data.text && (
+            <div className="pr-8 ">
+              <p className="italic font-display leading-snug text-foreground   whitespace-break-spaces text-sm lg:text-lg">
+                {data.text}
+              </p>
+            </div>
+          )}
+
           <Back url="/audiovisual/fotografias" />
         </div>
       )}

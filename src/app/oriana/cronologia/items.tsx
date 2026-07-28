@@ -48,7 +48,7 @@ const items = ({ lang }: { lang: string }) => {
       </div>
       <div>
         <h2 className="text-lg lg:text-xl">
-          {lang === "es" ? "Docencia universitaria" : "University training"}
+          {lang === "es" ? "Docencia universitaria" : "University Teaching"}
         </h2>
         <div className="flex flex-col gap-y-4">
           {data

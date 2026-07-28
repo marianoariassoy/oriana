@@ -27,7 +27,7 @@ const page = ({
       <div className="flex flex-col gap-y-8 text-center">
         <h1 className="text-xl lg:text-3xl font-display font-bold">{title}</h1>
 
-        <div className="lg:text-lg font-display text-foreground leading-relaxed mb-8">
+        <div className="lg:text-lg font-display text-foreground mb-8">
           <div
             className="prose prose-neutral max-w-5xl"
             dangerouslySetInnerHTML={{ __html: text }}

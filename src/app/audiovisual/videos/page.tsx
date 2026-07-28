@@ -43,7 +43,7 @@ const page = () => {
     image.scrollIntoView({ behavior: "smooth" });
   };
 
-  const sortedData = [...data].sort((a, b) => a.title.localeCompare(b.title));
+  // const sortedData = [...data].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <Layout section="audiovisual" subsection="Videos">
@@ -66,7 +66,7 @@ const page = () => {
           </div>
           <div>
             <ul className="flex flex-col gap-2 mt-12">
-              {sortedData.map((item, index) => (
+              {data.map((item, index) => (
                 <li key={item.id}>
                   <button
                     className="text-foreground hover:underline cursor-pointer"
