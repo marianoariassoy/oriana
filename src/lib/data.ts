@@ -77,9 +77,9 @@ export const nav = [
         href: "/escritos/cuentos",
       },
       {
-        name: "Ensayos",
-        name_en: "Essays",
-        href: "/escritos/ensayos",
+        name: "Y otros",
+        name_en: "And others",
+        href: "/escritos/yotros",
       },
     ],
   },
