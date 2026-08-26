@@ -18,7 +18,7 @@ const Card1 = (props: Card) => {
           />
         </div>
       </Link>
-      <div className="text-foreground">{props.title}</div>
+      <div className="text-foreground text-center">{props.title}</div>
     </article>
   );
 };
