@@ -49,7 +49,9 @@ export default function Home() {
         <span className="font-light lg:leading-17  -translate-x-8 lg:-translate-x-20">
           Oriana
         </span>
-        <span className="font-light">Favaro</span>
+        <span className="font-light">
+          Favaro <h1>PRUEBA 123456789</h1>
+        </span>
         <span className="text-white text-2xl lg:text-3xl tracking-widest font-light">
           {lang === "es" ? "artista" : "artist"}
         </span>

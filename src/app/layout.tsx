@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://oriana.dev",
+    url: "https://orianafavaro.com/",
     siteName: "Oriana Favaro Artista",
     images: [
       {
-        url: "https://oriana.dev/assets/og-image.jpg",
+        url: "https://orianafavaro.com/assets/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Oriana Favaro Artista",
