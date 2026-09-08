@@ -24,14 +24,11 @@ const page = ({
 
   return (
     <div className="py-8 pt-12 flex flex-col lg:flex-row gap-y-4 gap-x-20 max-w-4xl mx-auto">
-      <div className="flex flex-col gap-y-8 text-center">
+      <div className="flex flex-col gap-y-8 text-center w-full mx-auto ">
         <h1 className="text-xl lg:text-3xl font-display font-bold">{title}</h1>
 
-        <div className="lg:text-lg font-display text-foreground mb-8">
-          <div
-            className="prose prose-neutral max-w-5xl"
-            dangerouslySetInnerHTML={{ __html: text }}
-          />
+        <div className="w-full lg:text-lg font-display text-foreground mb-8">
+          <div dangerouslySetInnerHTML={{ __html: text }} />
         </div>
 
         {audioHtml && <div dangerouslySetInnerHTML={{ __html: audioHtml }} />}

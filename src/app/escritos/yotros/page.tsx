@@ -44,7 +44,7 @@ const page = () => {
   return (
     <Layout
       section="escritos"
-      subsection={lang === "es" ? "Ensayos" : "Essays"}
+      subsection={lang === "es" ? "Y Otros" : "And Others"}
     >
       <div className="py-8">
         {loading ? (
@@ -58,7 +58,7 @@ const page = () => {
                   className="border-transparent hover:border-4 border-b w-full"
                 >
                   <Link
-                    href={"/escritos/ensayos/view?id=" + item.id}
+                    href={"/escritos/yotros/view?id=" + item.id}
                     className={`${paddins[index]}`}
                   >
                     {item.title}

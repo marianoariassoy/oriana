@@ -77,7 +77,7 @@ const page = () => {
   return (
     <Layout
       section="escritos"
-      subsection={lang === "es" ? "Ensayos" : "Essays"}
+      subsection={lang === "es" ? "Y Otros" : "And Others"}
     >
       {loading ? (
         <Loader />
@@ -92,7 +92,7 @@ const page = () => {
             video={data.video}
             image_title={data.image_title}
           />
-          <Back url="/escritos/ensayos" />
+          <Back url="/escritos/yotros" />
         </>
       )}
     </Layout>
