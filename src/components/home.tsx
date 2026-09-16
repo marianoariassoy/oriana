@@ -4,7 +4,7 @@ import { nav } from "@/lib/data";
 import Link from "next/link";
 import Loader from "@/components/loading";
 import { useLanguage } from "@/context/LanguageContext";
-import { Instagram } from "@/lib/icons";
+import { Instagram, Youtube } from "@/lib/icons";
 
 interface data {
   id: number;
@@ -150,22 +150,34 @@ const home = ({ section }: { section: string }) => {
         </div>
         {section === "contacto" && (
           <>
-            <div className="flex flex-col gap-4  lg:flex-row justify-center items-center">
-              <div className="flex w-full lg:w-auto mb-4 lg:mb-0 justify-start lg:justify-center">
+            <div className="flex flex-col gap-4 md:justify-center md:items-center">
+              <div>
                 <a
-                  href="https://www.instagram.com/orianafavaro"
-                  className="hover:text-foreground text-3xl lg:mr-8"
+                  href="mailto:me@orianafavaro.com"
+                  className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg"
                 >
-                  <Instagram />
+                  {lang === "es" ? "Envíame tu consulta" : "Send me your query"}
                 </a>
               </div>
-
-              <a
-                href="mailto:me@orianafavaro.com"
-                className="border border-white h-12 w-full lg:w-50 flex items-center justify-center hover:text-secondary hover:bg-white font-medium rounded-tl-2xl rounded-br-2xl lg:text-lg"
-              >
-                {lang === "es" ? "Envíame tu consulta" : "Send me your query"}
-              </a>
+              <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-center">
+                <span className="text-lg">
+                  Oriana Favaro 2026 - All rights reserved
+                </span>
+                <div className="flex gap-4 items-center">
+                  <a
+                    href="https://www.instagram.com/orianafavaro"
+                    className="hover:text-foreground text-3xl"
+                  >
+                    <Instagram />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@OrianaFavaro"
+                    className="hover:text-foreground text-3xl"
+                  >
+                    <Youtube />
+                  </a>
+                </div>
+              </div>
             </div>
             <a
               href="https://fabianmuggeri.com"
